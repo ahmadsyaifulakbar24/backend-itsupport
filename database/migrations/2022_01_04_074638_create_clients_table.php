@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServiceCategoryStepsTable extends Migration
+class CreateClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateServiceCategoryStepsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_category_steps', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('service_category_id')->constrained('service_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
-            $table->integer('order');
+            $table->foreignUuid('category_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateServiceCategoryStepsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_category_steps');
+        Schema::dropIfExists('clients');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolesTable extends Migration
+class CreateMonitoringBasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('monitoring_bases', function (Blueprint $table) {
             $table->id();
-            $table->string('role')->unique();
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('role')->references('role')->on('roles')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('slug')->unique();
+            $table->bigInteger('total_budged');
         });
     }
 
@@ -30,6 +27,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('monitoring_bases');
     }
 }

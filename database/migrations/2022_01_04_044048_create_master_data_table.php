@@ -21,12 +21,12 @@ class CreateMasterDataTable extends Migration
         });
 
         Schema::table('master_data', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('master_data');
+            $table->foreign('parent_id')->references('id')->on('master_data')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('eselon1_id')->references('id')->on('master_data');
-            $table->foreign('eselon2_id')->references('id')->on('master_data');
+            $table->foreign('eselon1_id')->references('id')->on('master_data')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('eselon2_id')->references('id')->on('master_data')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

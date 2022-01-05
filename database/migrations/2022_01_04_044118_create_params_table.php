@@ -22,7 +22,7 @@ class CreateParamsTable extends Migration
         });
 
         Schema::table('params', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('params');
+            $table->foreign('parent_id')->references('id')->on('params')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
