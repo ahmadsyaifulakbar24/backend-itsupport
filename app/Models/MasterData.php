@@ -10,5 +10,12 @@ class MasterData extends Model
 {
     use Uuids, HasFactory;
 
+    protected $table = 'master_data';
+    protected $fillable = [
+        'parent_id',
+        'category',
+        'value'
+    ];
+    
     public $timestamps = false;
 }

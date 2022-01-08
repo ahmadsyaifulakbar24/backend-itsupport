@@ -16,7 +16,7 @@ class CreateMaksTable extends Migration
         Schema::create('maks', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('budged_activity_id')->constrained('budged_activities')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('code_mka')->unique();
+            $table->string('code_mak')->unique();
             $table->bigInteger('budged');
             $table->timestamps();
         });

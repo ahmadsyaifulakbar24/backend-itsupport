@@ -6,15 +6,16 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceCategory extends Model
+class History extends Model
 {
     use Uuids, HasFactory;
 
-    protected $table = 'service_categories';
+    protected $table = 'histories';
     protected $fillable = [
-        'category',
-        'alias'
+        'helpdesk_step_id',
+        'monitoring_id',
+        'type',
+        'action_by',
+        'history'
     ];
-    
-    public $timestamps = false;
 }

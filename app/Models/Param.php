@@ -10,5 +10,13 @@ class Param extends Model
 {
     use Uuids, HasFactory;
 
+    protected $table = 'params';
+    protected $fillable = [
+        'parent_id',
+        'category',
+        'param',
+        'alias'
+    ];
+
     public $timestamps = false;
 }
