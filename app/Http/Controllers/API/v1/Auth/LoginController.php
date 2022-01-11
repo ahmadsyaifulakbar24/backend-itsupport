@@ -16,7 +16,7 @@ class LoginController extends Controller
 {
     public function __invoke(Request $request)
     {// validasi form input
-        $this->validate($request, [
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
