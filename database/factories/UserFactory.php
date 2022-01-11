@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Param;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -14,11 +16,19 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $eselon1 = Param::where('category', 'eselon1')->first();
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            // 'email' => $this->faker->unique()->safeEmail(),
+            'email' => 'ipulbelcram@gmail.com',
+            'nip' => rand(0, 9999999999999999),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'phone_number' => $this->faker->unique()->phoneNumber(),
+            'eselon1_id' => $eselon1->id, 
+            'eselon2_id' => Param::where('parent_id', $eselon1->id)->first()->id,
+            'position' => 'Manager',
+            'password' => Hash::make('12345678'), // password
+            'role' => 'admin',
             'remember_token' => Str::random(10),
         ];
     }
