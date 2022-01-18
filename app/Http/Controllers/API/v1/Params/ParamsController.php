@@ -26,7 +26,7 @@ class ParamsController extends Controller
             ],
         ]);
 
-        return $param = Param::where('parent_id', $request->eselon1_id)->get();
+        $param = Param::where('parent_id', $request->eselon1_id)->get();
         return ResponseFormatter::success(ParamResource::collection($param), 'get eselon 2 data success');
     }
 }

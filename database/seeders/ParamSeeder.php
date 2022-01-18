@@ -265,5 +265,12 @@ class ParamSeeder extends Seeder
             'param' => 'SP2D (Pencairan)',
             'alias' => null
         ]);
+
+        Param::create([
+            'parent_id' => null,
+            'category' => 'signature',
+            'param' => 'Pejabat Pemberi Tanda Tangan',
+            'alias' => null
+        ]);
     }
 }

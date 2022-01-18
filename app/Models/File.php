@@ -19,4 +19,9 @@ class File extends Model
         'file_name',
         'path'
     ];
+
+    public function helpdesk()
+    {
+        return $this->belongsTo(Helpdesk::class, 'helpdesk_id');
+    }
 }

@@ -12,7 +12,7 @@ class HelpdeskStep extends Model
 
     protected $table = 'helpdesk_steps';
     protected $fillable = [
-        'helpdesk',
+        'helpdesk_id',
         'service_category_step_id',
         'status',
         'description'

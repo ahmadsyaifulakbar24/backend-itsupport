@@ -4,6 +4,7 @@ use App\Http\Controllers\API\v1\Auth\LoginController;
 use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\UserController;
+use App\Http\Controllers\API\v1\Helpdesk\CreateHelpdeskController;
 use App\Http\Controllers\API\v1\Params\ParamsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,10 +36,15 @@ Route::prefix('v1')->group(function() {
     Route::middleware('auth:api')->group(function() {
         Route::get("/user-login", UserController::class);
         Route::delete("/logout", LogoutController::class);
+        
+        // Route::prefix('/param')->group(function() {
+            
+        // });
+    
+        Route::prefix('/helpdesk')->group(function () {
+            Route::post('/create', CreateHelpdeskController::class);
+        });
     });
 
-    // Route::prefix('/param')->group(function() {
-        
-    // });
 });
 

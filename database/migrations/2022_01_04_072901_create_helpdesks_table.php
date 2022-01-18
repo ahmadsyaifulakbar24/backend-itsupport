@@ -22,14 +22,14 @@ class CreateHelpdesksTable extends Migration
             $table->foreignUuid('email_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->date('from_date')->nullable();
             $table->date('till_date')->nullable();
-            $table->timestamp('execution_time')->nullable();
+            $table->time('execution_time')->nullable();
             $table->string('duration')->nullable();
             $table->integer('participant_capacity')->nullable();
             $table->foreignUuid('signature_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('class_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('update_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('complaint_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->enum('status', ['pending', 'process', 'finish']);
             $table->timestamps();
         });

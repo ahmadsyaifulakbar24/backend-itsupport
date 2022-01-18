@@ -18,7 +18,7 @@ class CreateFilesTable extends Migration
             $table->foreignUuid('helpdesk_id')->nullable()->constrained('helpdesks')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('helpdesk_step_id')->nullable()->constrained('helpdesk_steps')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('monitoring_id')->nullable()->constrained('monitorings')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('type', ['helpdesk', 'helpdesk_step', 'monitoring']);
+            $table->string('type');
             $table->string('file_name');
             $table->string('path');
             $table->timestamps();

@@ -17,4 +17,9 @@ class ServiceCategory extends Model
     ];
     
     public $timestamps = false;
+
+    public function service_category_step()
+    {
+        return $this->hasMany(ServiceCategoryStep::class, 'service_category_id');
+    }
 }
