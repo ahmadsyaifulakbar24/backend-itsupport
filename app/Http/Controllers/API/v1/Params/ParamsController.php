@@ -28,5 +28,25 @@ class ParamsController extends Controller
 
         $param = Param::where('parent_id', $request->eselon1_id)->get();
         return ResponseFormatter::success(ParamResource::collection($param), 'get eselon 2 data success');
+    }   
+
+    public function get_email_type(Request $request) {
+        $request->validate([
+            'id' => [
+                'nullable',
+                Rule::exists('params', 'id')->where(function($query) {
+                    return $query->where('category', 'email_type');
+                })
+            ]
+        ]);
+
+        $message = 'get message data success';
+        if($request->id){
+            $param = Param::find($request->id);
+            return ResponseFormatter::success(new ParamResource($param), $message);
+        } else {
+            $param = Param::where('category', 'email_type')->get();
+            return ResponseFormatter::success(ParamResource::collection($param), $message);
+        }
     }
 }
