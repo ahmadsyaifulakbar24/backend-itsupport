@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Helpdesk;
 
+use App\Http\Resources\Params\ParamResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HelpdeskResource extends JsonResource
@@ -14,6 +15,18 @@ class HelpdeskResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user' => [
+                'user_id' => $this->user->id,
+                'name' => $this->user->name,
+            ],
+            'ticket_number' => $this->ticket_number,
+            'service_category' => $this->service_category,
+            'title' => $this->title,
+            'status' => $this->status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

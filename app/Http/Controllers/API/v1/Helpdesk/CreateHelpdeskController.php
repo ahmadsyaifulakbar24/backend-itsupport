@@ -7,15 +7,12 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Helpdesk\HelpdeskResource;
 use App\Models\Helpdesk;
-use App\Models\HelpdeskStep;
 use App\Models\ServiceCategory;
 use App\Models\ServiceCategoryStep;
-use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\Input;
 
 class CreateHelpdeskController extends Controller
 {
@@ -159,7 +156,7 @@ class CreateHelpdeskController extends Controller
         
         $result = DB::transaction(function () use ($input, $file, $steps) {
             $helpdesk = Helpdesk::create($input);
-            $helpdesk->helpdesk_step_many()->sync($steps);
+            $helpdesk->service_category_step()->sync($steps);
             $helpdesk->file()->create($file);
             return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'success create helpdesk data');
         });
@@ -172,7 +169,7 @@ class CreateHelpdeskController extends Controller
         $steps = $this->service_category_step($service_category_id);
         $result = DB::transaction(function () use ($input, $steps) {
             $helpdesk = Helpdesk::create($input);
-            $helpdesk->helpdesk_step_many()->sync($steps);
+            $helpdesk->service_category_step()->sync($steps);
             return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'success create helpdesk data');
         });
 

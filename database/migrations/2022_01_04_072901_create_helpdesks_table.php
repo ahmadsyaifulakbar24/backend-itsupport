@@ -16,7 +16,7 @@ class CreateHelpdesksTable extends Migration
         Schema::create('helpdesks', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('ticket_number');
+            $table->string('ticket_number')->unique();
             $table->foreignUuid('service_category_id')->constrained('service_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->foreignUuid('email_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');

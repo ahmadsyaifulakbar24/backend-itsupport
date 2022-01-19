@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,18 +31,56 @@ class Helpdesk extends Model
         'status'
     ];
 
+    public function getCreatedAtAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($date) {
+        return Carbon::parse($date)->format('Y-m-d H:i:s');
+    }
+
     public function file()
     {
         return $this->hasMany(File::class, 'helpdesk_id');
     }
-
-    public function helpdesk_step() 
+    
+    public function service_category_step()
     {
-        return $this->hasMany(HelpdeskStep::class, 'helpdesk_id');
+        return $this->belongsToMany(ServiceCategoryStep::class, 'helpdesk_steps', 'helpdesk_id', 'service_category_step_id')->withPivot('id', 'status', 'description');
     }
 
-    public function helpdesk_step_many()
+    public function user() 
     {
-        return $this->belongsToMany(ServiceCategoryStep::class, 'helpdesk_steps', 'helpdesk_id', 'service_category_step_id');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function service_category()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'service_category_id');
+    }
+
+    public function email_type()
+    {
+        return $this->belongsTo(Param::class, 'email_type_id');
+    }
+
+    public function signature()
+    {
+        return $this->belongsTo(Param::class, 'signature_id');
+    }
+
+    public function class_type()
+    {
+        return $this->belongsTo(Param::class, 'class_type_id');
+    }
+
+    public function update_type()
+    {
+        return $this->belongsTo(Param::class, 'update_type_id');
+    }
+
+    public function complaint_type()
+    {
+        return $this->belongsTo(Param::class, 'complaint_type_id');
     }
 }

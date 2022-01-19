@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
@@ -37,6 +38,7 @@ class RegisterController extends Controller
         ]);
 
         $input = $request->all();
+        $input['password'] = Hash::make($request->password);
         $user = User::create($input);
         return ResponseFormatter::success(new UserResource($user), 'register user success');
     }

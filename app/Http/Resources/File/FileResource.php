@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources\ServiceCategory;
+namespace App\Http\Resources\File;
 
-use App\Http\Resources\ServiceCategoryStep\ServiceCategoryStepResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ServiceCategoryResource extends JsonResource
+class FileResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +16,10 @@ class ServiceCategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'category' => $this->category,
-            'alias' => $this->alias,
-            'service_category_step' => ServiceCategoryStepResource::collection($this->service_category_step),
+            'file_name' => $this->file_name,
+            'path_url' => $this->path_url,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
