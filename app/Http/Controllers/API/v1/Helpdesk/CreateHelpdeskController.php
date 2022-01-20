@@ -39,7 +39,8 @@ class CreateHelpdeskController extends Controller
                         return $query->where('category', 'email_type');
                     })
                 ],
-                'approval_document' => ['required', 'file']
+                'approval_document' => ['required', 'array'],
+                'approval_document.*' => ['required', 'file']
             ]);
 
             $input['title'] = $request->title;
@@ -67,7 +68,8 @@ class CreateHelpdeskController extends Controller
         } else if($sc_id == 'C3') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'flayer' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
+                'flayer' => ['required', 'array'],
+                'flayer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
                 'signature_id' => [
                     'required',
                     Rule::exists('params', 'id')->where(function ($query) {
@@ -83,7 +85,8 @@ class CreateHelpdeskController extends Controller
         } else if($sc_id == 'C4') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'flayer' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
+                'flayer' => ['required', 'array'],
+                'flayer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
                 'from_date' => ['required', 'date'],
                 'till_date' => ['required', 'date', 'after:from_date'],
                 'class_type_id' => [
@@ -109,7 +112,8 @@ class CreateHelpdeskController extends Controller
                         return $query->where('category', 'update_type');
                     })
                 ],
-                'document' => ['required', 'file']
+                'document' => ['required', 'array'],
+                'document.*' => ['required', 'file']
             ]);
 
             $input['title'] = $request->title;
@@ -119,7 +123,8 @@ class CreateHelpdeskController extends Controller
         } else if($sc_id == 'C6' || $sc_id == 'C7' || $sc_id == 'C8' || $sc_id == 'C9' || $sc_id == 'C10' || $sc_id == 'C12') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'latter' => ['required', 'file']
+                'latter' => ['required', 'array'],
+                'latter.*' => ['required', 'file']
             ]);
             $input['title'] = $request->title;
             return $this->createFile($input, $request->latter, 'latter', $service_category->id);
@@ -140,24 +145,26 @@ class CreateHelpdeskController extends Controller
             $input['complaint_type_id'] = $request->complaint_type_id;
             $input['description'] = $request->description;
             return $this->create($input, $service_category->id);
-            
         }
     }
 
-    public function createFile($input, $file_input, $file_type, $service_category_id)
+    public function createFile($input, $array_file, $file_type, $service_category_id)
     {
-        $path = FileHelpers::upload_file('helpdesk', $file_input);
-        $file_name = $file_input->getClientOriginalName();
-        $file['type'] = $file_type;
-        $file['file_name'] = $file_name;
-        $file['path'] = $path;
+        foreach($array_file  as $file_input) {
+            $path = FileHelpers::upload_file('helpdesk', $file_input);
+            $file_name = $file_input->getClientOriginalName();
+            $file['type'] = $file_type;
+            $file['file_name'] = $file_name;
+            $file['path'] = $path;
 
+            $new_files[] = $file;
+        }
         $steps = $this->service_category_step($service_category_id);
         
-        $result = DB::transaction(function () use ($input, $file, $steps) {
+        $result = DB::transaction(function () use ($input, $new_files, $steps) {
             $helpdesk = Helpdesk::create($input);
             $helpdesk->service_category_step()->sync($steps);
-            $helpdesk->file()->create($file);
+            $helpdesk->file()->createMany($new_files);
             return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'success create helpdesk data');
         });
         
