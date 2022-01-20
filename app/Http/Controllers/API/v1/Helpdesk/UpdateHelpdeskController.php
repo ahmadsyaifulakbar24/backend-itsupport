@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\API\v1\Helpdesk;
 
+use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Helpdesk\HelpdeskResource;
 use App\Models\Helpdesk;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -27,13 +29,12 @@ class UpdateHelpdeskController extends Controller
                         return $query->where('category', 'email_type');
                     })
                 ],
-                'approval_document' => ['required', 'file']
             ]);
 
             $input['title'] = $request->title;
             $input['email_type_id'] = $request->email_type_id;
-            return $this->createFile($input, $request->approval_document, 'approval_document', $service_category->id);
-
+            return $this->update($helpdesk, $input);
+            
         } else if($sc_id == 'C2') {
             $request->validate([
                 'title' => ['required', 'string'],
@@ -50,12 +51,11 @@ class UpdateHelpdeskController extends Controller
             $input['execution_time'] = $request->execution_time;
             $input['duration'] = $request->duration;
             $input['participant_capacity'] = $request->participant_capacity;
-            return $this->create($input, $service_category->id);
+            return $this->update($helpdesk, $input);
 
         } else if($sc_id == 'C3') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'flayer' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
                 'signature_id' => [
                     'required',
                     Rule::exists('params', 'id')->where(function ($query) {
@@ -66,12 +66,11 @@ class UpdateHelpdeskController extends Controller
 
             $input['title'] = $request->title;
             $input['signature_id'] = $request->signature_id;
-            return $this->createFile($input, $request->flayer, 'flayer', $service_category->id);
+            return $this->update($helpdesk, $input);
 
         } else if($sc_id == 'C4') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'flayer' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
                 'from_date' => ['required', 'date'],
                 'till_date' => ['required', 'date', 'after:from_date'],
                 'class_type_id' => [
@@ -86,7 +85,7 @@ class UpdateHelpdeskController extends Controller
             $input['from_date'] = $request->from_date;
             $input['till_date'] = $request->till_date;
             $input['class_type_id'] = $request->class_type_id;
-            return $this->createFile($input, $request->flayer, 'flayer', $service_category->id);
+            return $this->update($helpdesk, $input);
 
         } else if($sc_id == 'C5') {
             $request->validate([
@@ -97,21 +96,19 @@ class UpdateHelpdeskController extends Controller
                         return $query->where('category', 'update_type');
                     })
                 ],
-                'document' => ['required', 'file']
             ]);
 
             $input['title'] = $request->title;
             $input['update_type_id'] = $request->update_type_id;
-            return $this->createFile($input, $request->document, 'document', $service_category->id);
+            return $this->update($helpdesk, $input);
 
         } else if($sc_id == 'C6' || $sc_id == 'C7' || $sc_id == 'C8' || $sc_id == 'C9' || $sc_id == 'C10' || $sc_id == 'C12') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'latter' => ['required', 'file']
             ]);
             $input['title'] = $request->title;
-            return $this->createFile($input, $request->latter, 'latter', $service_category->id);
-
+            return $this->update($helpdesk, $input);
+            
         } else if($sc_id == 'C11') {
             $request->validate([
                 'title' => ['required', 'string'],
@@ -127,7 +124,13 @@ class UpdateHelpdeskController extends Controller
             $input['title'] = $request->title;
             $input['complaint_type_id'] = $request->complaint_type_id;
             $input['description'] = $request->description;
-            return $this->create($input, $service_category->id);
+            return $this->update($helpdesk, $input);
         }
+    }
+
+    public function update($helpdesk, $input)
+    {
+        $helpdesk->update($input);
+        return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'update helpdesk data success');
     }
 }

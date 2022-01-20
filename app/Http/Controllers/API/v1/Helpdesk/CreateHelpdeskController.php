@@ -165,7 +165,7 @@ class CreateHelpdeskController extends Controller
             $helpdesk = Helpdesk::create($input);
             $helpdesk->service_category_step()->sync($steps);
             $helpdesk->file()->createMany($new_files);
-            return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'success create helpdesk data');
+            return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'create helpdesk data success');
         });
         
         return $result;
@@ -177,7 +177,7 @@ class CreateHelpdeskController extends Controller
         $result = DB::transaction(function () use ($input, $steps) {
             $helpdesk = Helpdesk::create($input);
             $helpdesk->service_category_step()->sync($steps);
-            return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'success create helpdesk data');
+            return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'create helpdesk data success');
         });
 
         return $result;
