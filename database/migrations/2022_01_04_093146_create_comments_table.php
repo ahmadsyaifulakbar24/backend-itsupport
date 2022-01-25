@@ -15,8 +15,8 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('helpdesk_step_id')->constrained('helpdesk_steps')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignUuid('monitoring_id')->constrained('monitorings')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('helpdesk_step_id')->nullable()->constrained('helpdesk_steps')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('monitoring_id')->nullable()->constrained('monitorings')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('type', ['helpdesk_step', 'monitoring']);
             $table->foreignUuid('user_id')->constrained('users');
             $table->uuid('parent_id')->nullable();

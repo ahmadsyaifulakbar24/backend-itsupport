@@ -4,15 +4,19 @@ use App\Http\Controllers\API\v1\Auth\LoginController;
 use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\UserController;
+use App\Http\Controllers\API\v1\Comment\CommentController;
 use App\Http\Controllers\API\v1\File\FileController;
 use App\Http\Controllers\API\v1\Helpdesk\CreateHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\DeleteHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\FileHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\GetHelpdeskController;
+use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\FileHelpdeskStepController;
+use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\GetHelpdeskStepController;
+use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\UpdateHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\UpdateHelpdeskController;
+use App\Http\Controllers\API\v1\History\HistoryController;
 use App\Http\Controllers\API\v1\Params\ParamsController;
 use App\Http\Controllers\API\v1\ServiceCategory\ServiceCategoryController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,14 +59,30 @@ Route::prefix('v1')->group(function() {
     
         Route::prefix('/helpdesk')->group(function () {
             Route::post('/create', CreateHelpdeskController::class);
-            Route::post('/update', UpdateHelpdeskController::class);
+            Route::post('/update', [UpdateHelpdeskController::class, 'update_data']);
             Route::get('/', [GetHelpdeskController::class, 'get_helpdesk']);
             Route::delete('/', DeleteHelpdeskController::class);
             Route::post('/file/create', [FileHelpdeskController::class, 'create']);
         });
 
+        Route::prefix('/helpdesk_step')->group(function () {
+            Route::get('/', [GetHelpdeskStepController::class, 'get']);
+            Route::patch('/', UpdateHelpdeskStepController::class);
+            Route::post('/file/create', [FileHelpdeskStepController::class, 'create']);
+            
+        });
+
         Route::prefix('/file')->group(function () {
             Route::delete('/', [FileController::class, 'destroy']);
+        });
+
+        Route::prefix('/comment')->group(function () {
+            Route::post('/create', [CommentController::class, 'create']);
+            Route::delete('/delete', [CommentController::class, 'delete']);
+        });
+
+        Route::prefix('/history')->group(function () {
+            Route::get('/', [HistoryController::class, 'get']);
         });
     });
 });

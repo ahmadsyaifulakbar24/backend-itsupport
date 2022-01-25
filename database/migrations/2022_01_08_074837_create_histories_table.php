@@ -14,9 +14,9 @@ class CreateHistoriesTable extends Migration
     public function up()
     {
         Schema::create('histories', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUuid('helpdesk_step_id')->constrained('helpdesk_steps');
-            $table->foreignUuid('monitoring_id')->constrained('monitorings');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('helpdesk_step_id')->nullable()->constrained('helpdesk_steps')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('monitoring_id')->nullable()->constrained('monitorings')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('type', ['helpdesk_step', 'monitoring']);
             $table->foreignUuid('action_by')->constrained('users');
             $table->string('history');

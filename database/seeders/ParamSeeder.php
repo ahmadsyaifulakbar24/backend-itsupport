@@ -24,7 +24,31 @@ class ParamSeeder extends Seeder
         Param::create([
             'parent_id' => $es11->id,
             'category' => 'eselon2',
-            'param' => 'Eselon 2 Deputi perkoperasian',
+            'param' => 'Sekretaris Deputi Bidang Perkoperasian',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es11->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan dan Pembaruan Perkoperasian',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es11->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pembiayaan dan Penjaminan Perkoperasian',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es11->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengawasan Koperasi',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es11->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan SDM',
             'alias' => null
         ]);
 
@@ -38,7 +62,37 @@ class ParamSeeder extends Seeder
         Param::create([
             'parent_id' => $es12->id,
             'category' => 'eselon2',
-            'param' => 'Eselon 2 Bidah usaha mikro',
+            'param' => 'Sekretaris Deputi Bidang Usaha Mikro',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es12->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pembiayaan Usaha Mikro',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es12->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Perlindungan dan Kemudahan Usaha Mikro',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es12->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan Rantai Pasok Usaha Mikro',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es12->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan Kapasitas Usaha Mikro',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es12->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Fasilitasi Hukum dan Konsultasi Usaha',
             'alias' => null
         ]);
 
@@ -52,7 +106,31 @@ class ParamSeeder extends Seeder
         Param::create([
             'parent_id' => $es13->id,
             'category' => 'eselon2',
-            'param' => 'eselon 2 bidang usaha kecil dan menengah',
+            'param' => 'Sekretaris Deputi Bidang Usaha Kecil dan Menengah',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es13->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pembiayaan dan Investasi Usaha Kecil dan Menengah',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es13->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan SDM Usaha Kecil dan Menengah',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es13->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan Kawasan dan Rantai Pasok',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es13->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Kemitraan dan Peluasan Pasar',
             'alias' => null
         ]);
 
@@ -66,7 +144,37 @@ class ParamSeeder extends Seeder
         Param::create([
             'parent_id' => $es14->id,
             'category' => 'eselon2',
-            'param' => 'eselon 2 deputi bidang kewirausagaan',
+            'param' => 'Sekretaris Deputi Bidang Kewirausahaan',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es14->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Konsultasi Bisnis dan Pendampingan',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es14->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan Teknologi Informasi dan Inkubasi Usaha',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es14->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pengembangan Ekosistem Bisnis',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es14->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pembiayaan Wirausaha',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es14->id,
+            'category' => 'eselon2',
+            'param' => 'Asdep Pemetaan Data, Analis, dan Pengkajian Usaha',
             'alias' => null
         ]);
 
@@ -80,7 +188,25 @@ class ParamSeeder extends Seeder
         Param::create([
             'parent_id' => $es15->id,
             'category' => 'eselon2',
-            'param' => 'Kepala Biro Management Kinerja, Organisasi, dan SDM Aparatur',
+            'param' => 'Kepala Biro Managemen Kinerja, Organisasi, dan SDM Aparatur',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es15->id,
+            'category' => 'eselon2',
+            'param' => 'Kepala Biro Hukum dan Kerja Sama',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es15->id,
+            'category' => 'eselon2',
+            'param' => 'Kepala Biro Komunikasi dan Teknologi Informasi',
+            'alias' => null
+        ]);
+        Param::create([
+            'parent_id' => $es15->id,
+            'category' => 'eselon2',
+            'param' => 'Kepala Biro Umum dan Keuangan',
             'alias' => null
         ]);
 
@@ -143,7 +269,7 @@ class ParamSeeder extends Seeder
         Param::create([
             'parent_id' => null,
             'category' => 'class_type',
-            'param' => 'sosialisasi',
+            'param' => 'Sosialisasi',
             'alias' => null
         ]);
 

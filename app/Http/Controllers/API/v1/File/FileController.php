@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    
     public function destroy(Request $request)
     {
         $request->validate([ 'id' => ['required', 'exists:files,id'] ]);

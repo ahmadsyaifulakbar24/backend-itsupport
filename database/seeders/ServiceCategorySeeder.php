@@ -143,7 +143,7 @@ class ServiceCategorySeeder extends Seeder
         ]);
 
         $C5 = ServiceCategory::create([
-            'category' => 'Penglola Website',
+            'category' => 'Pengelola Website',
             'alias' => 'C5'
         ]);
 

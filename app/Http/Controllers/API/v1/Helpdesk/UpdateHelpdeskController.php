@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 
 class UpdateHelpdeskController extends Controller
 {
-    public function __invoke(Request $request) 
+    public function update_data(Request $request) 
     {
         $request->validate([
             'id' => ['required', 'exists:helpdesks,id']
@@ -128,6 +128,14 @@ class UpdateHelpdeskController extends Controller
         }
     }
 
+    public function update_status(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'exists:helpdesks,id'],
+            'status' => ['required', 'in:pending,process,finish']
+        ]);
+    }
+    
     public function update($helpdesk, $input)
     {
         $helpdesk->update($input);

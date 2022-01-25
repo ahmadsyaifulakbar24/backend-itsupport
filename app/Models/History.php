@@ -18,4 +18,9 @@ class History extends Model
         'action_by',
         'history'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'action_by');
+    }
 }
