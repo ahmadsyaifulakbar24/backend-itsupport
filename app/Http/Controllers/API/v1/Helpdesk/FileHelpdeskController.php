@@ -15,7 +15,7 @@ class FileHelpdeskController extends Controller
     {
         $request->validate([
             'id' => ['required', 'exists:helpdesks,id'],
-            'type' => ['required', 'in:approval_document,flayer,document,latter'],
+            'type' => ['required', 'in:approval_document,flyer,document,latter'],
             'file' => ['required', 'file']
         ]);
 

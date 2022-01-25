@@ -68,8 +68,8 @@ class CreateHelpdeskController extends Controller
         } else if($sc_id == 'C3') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'flayer' => ['required', 'array'],
-                'flayer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
+                'flyer' => ['required', 'array'],
+                'flyer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
                 'signature_id' => [
                     'required',
                     Rule::exists('params', 'id')->where(function ($query) {
@@ -80,13 +80,13 @@ class CreateHelpdeskController extends Controller
 
             $input['title'] = $request->title;
             $input['signature_id'] = $request->signature_id;
-            return $this->createFile($input, $request->flayer, 'flayer', $service_category->id);
+            return $this->createFile($input, $request->flyer, 'flyer', $service_category->id);
 
         } else if($sc_id == 'C4') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'flayer' => ['required', 'array'],
-                'flayer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
+                'flyer' => ['required', 'array'],
+                'flyer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
                 'from_date' => ['required', 'date'],
                 'till_date' => ['required', 'date', 'after:from_date'],
                 'class_type_id' => [
@@ -101,7 +101,7 @@ class CreateHelpdeskController extends Controller
             $input['from_date'] = $request->from_date;
             $input['till_date'] = $request->till_date;
             $input['class_type_id'] = $request->class_type_id;
-            return $this->createFile($input, $request->flayer, 'flayer', $service_category->id);
+            return $this->createFile($input, $request->flyer, 'flyer', $service_category->id);
 
         } else if($sc_id == 'C5') {
             $request->validate([
