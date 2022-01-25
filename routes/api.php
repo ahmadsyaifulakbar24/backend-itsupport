@@ -10,6 +10,7 @@ use App\Http\Controllers\API\v1\Helpdesk\CreateHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\DeleteHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\FileHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\GetHelpdeskController;
+use App\Http\Controllers\API\v1\Helpdesk\HelpdeskAssigmentController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\FileHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\GetHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\UpdateHelpdeskStepController;
@@ -60,16 +61,19 @@ Route::prefix('v1')->group(function() {
         Route::prefix('/helpdesk')->group(function () {
             Route::post('/create', CreateHelpdeskController::class);
             Route::post('/update', [UpdateHelpdeskController::class, 'update_data']);
+            Route::patch('/update/status', [UpdateHelpdeskController::class, 'update_status']);
             Route::get('/', [GetHelpdeskController::class, 'get_helpdesk']);
             Route::delete('/', DeleteHelpdeskController::class);
             Route::post('/file/create', [FileHelpdeskController::class, 'create']);
+
+            Route::post('/assigment/create', [HelpdeskAssigmentController::class, 'create']);
+
         });
 
         Route::prefix('/helpdesk_step')->group(function () {
             Route::get('/', [GetHelpdeskStepController::class, 'get']);
             Route::patch('/', UpdateHelpdeskStepController::class);
-            Route::post('/file/create', [FileHelpdeskStepController::class, 'create']);
-            
+            Route::post('/file/create', [FileHelpdeskStepController::class, 'create']); 
         });
 
         Route::prefix('/file')->group(function () {

@@ -134,6 +134,13 @@ class UpdateHelpdeskController extends Controller
             'id' => ['required', 'exists:helpdesks,id'],
             'status' => ['required', 'in:pending,process,finish']
         ]);
+
+        $helpdesk = Helpdesk::find($request->id);
+        $helpdesk->update([
+            'status' => $request->status
+        ]);
+
+        return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'update helpdesk status success');
     }
     
     public function update($helpdesk, $input)

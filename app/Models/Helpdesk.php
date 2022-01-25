@@ -6,6 +6,7 @@ use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Helpdesk extends Model
 {
@@ -52,6 +53,11 @@ class Helpdesk extends Model
     public function user() 
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function helpdesk_assigment()
+    {
+        return $this->hasMany(HelpdeskAssigment::class, 'helpdesk_id');
     }
 
     public function service_category()
