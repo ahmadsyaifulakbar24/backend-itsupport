@@ -4,8 +4,10 @@ use App\Http\Controllers\API\v1\Auth\LoginController;
 use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\UserController;
+use App\Http\Controllers\API\v1\File\FileController;
 use App\Http\Controllers\API\v1\Helpdesk\CreateHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\DeleteHelpdeskController;
+use App\Http\Controllers\API\v1\Helpdesk\FileHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\GetHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\UpdateHelpdeskController;
 use App\Http\Controllers\API\v1\Params\ParamsController;
@@ -56,6 +58,11 @@ Route::prefix('v1')->group(function() {
             Route::post('/update', UpdateHelpdeskController::class);
             Route::get('/', [GetHelpdeskController::class, 'get_helpdesk']);
             Route::delete('/', DeleteHelpdeskController::class);
+            Route::post('/file/create', [FileHelpdeskController::class, 'create']);
+        });
+
+        Route::prefix('/file')->group(function () {
+            Route::delete('/', [FileController::class, 'destroy']);
         });
     });
 });

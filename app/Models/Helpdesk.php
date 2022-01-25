@@ -59,6 +59,13 @@ class Helpdesk extends Model
         return $this->belongsTo(ServiceCategory::class, 'service_category_id');
     }
 
+    public function helpdesk_step()
+    {
+        return $this->hasMany(HelpdeskStep::class, 'helpdesk_id')
+            ->join('service_category_steps as b', 'b.id', '=', 'helpdesk_steps.service_category_step_id')
+            ->select('helpdesk_steps.*', 'b.name', 'b.order');
+    }
+
     public function email_type()
     {
         return $this->belongsTo(Param::class, 'email_type_id');

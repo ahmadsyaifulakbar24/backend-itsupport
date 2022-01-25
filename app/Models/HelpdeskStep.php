@@ -17,4 +17,9 @@ class HelpdeskStep extends Model
         'status',
         'description'
     ];
+
+    public function service_category_step()
+    {
+        return $this->belongsTo(ServiceCategoryStep::class, 'service_category_step_id')->orderBy('order', 'asc');
+    }
 }
