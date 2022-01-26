@@ -4,6 +4,8 @@ use App\Http\Controllers\API\v1\Auth\LoginController;
 use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\UserController;
+use App\Http\Controllers\API\v1\BudgedActivity\CreateBudgedActivityController;
+use App\Http\Controllers\API\v1\Client\ClientController;
 use App\Http\Controllers\API\v1\Comment\CommentController;
 use App\Http\Controllers\API\v1\File\FileController;
 use App\Http\Controllers\API\v1\Helpdesk\CreateHelpdeskController;
@@ -54,6 +56,7 @@ Route::prefix('v1')->group(function() {
             Route::get('/class_type', [ParamsController::class, 'get_class_type']);
             Route::get('/update_type', [ParamsController::class, 'get_update_type']);
             Route::get('/complaint_type', [ParamsController::class, 'get_complaint_type']);
+            Route::get('/category_client', [ParamsController::class, 'get_category_client']);
         });
 
         Route::get('/service_category', [ServiceCategoryController::class, 'get_service_category']);
@@ -87,6 +90,17 @@ Route::prefix('v1')->group(function() {
 
         Route::prefix('/history')->group(function () {
             Route::get('/', [HistoryController::class, 'get']);
+        });
+
+        Route::prefix('/client')->group(function () {
+            Route::get('/', [ClientController::class, 'get']);
+            Route::post('/create', [ClientController::class, 'create']);
+            Route::patch('/update', [ClientController::class, 'update']);
+            Route::delete('/delete', [ClientController::class, 'delete']);
+        });
+
+        Route::prefix('/budged_activity')->group(function () {
+            Route::post('/create', [CreateBudgedActivityController::class, 'create']);
         });
     });
 });

@@ -31,101 +31,44 @@ class ParamsController extends Controller
     }   
 
     public function get_email_type(Request $request) {
-        $request->validate([
-            'id' => [
-                'nullable',
-                Rule::exists('params', 'id')->where(function($query) {
-                    return $query->where('category', 'email_type');
-                })
-            ]
-        ]);
-
-        $message = 'get message data success';
-        if($request->id){
-            $param = Param::find($request->id);
-            return ResponseFormatter::success(new ParamResource($param), $message);
-        } else {
-            $param = Param::where('category', 'email_type')->get();
-            return ResponseFormatter::success(ParamResource::collection($param), $message);
-        }
+        return $this->param($request, 'email_type', 'get message data success');
     }
 
     public function get_signature(Request $request) {
-        $request->validate([
-            'id' => [
-                'nullable',
-                Rule::exists('params', 'id')->where(function($query) {
-                    return $query->where('category', 'signature');
-                })
-            ]
-        ]);
-
-        $message = 'get signature data success';
-        if($request->id){
-            $param = Param::find($request->id);
-            return ResponseFormatter::success(new ParamResource($param), $message);
-        } else {
-            $param = Param::where('category', 'signature')->get();
-            return ResponseFormatter::success(ParamResource::collection($param), $message);
-        }
+        return $this->param($request, 'signature', 'get signature data success');
     }
 
     public function get_class_type(Request $request) {
-        $request->validate([
-            'id' => [
-                'nullable',
-                Rule::exists('params', 'id')->where(function($query) {
-                    return $query->where('category', 'class_type');
-                })
-            ]
-        ]);
-
-        $message = 'get class type data success';
-        if($request->id){
-            $param = Param::find($request->id);
-            return ResponseFormatter::success(new ParamResource($param), $message);
-        } else {
-            $param = Param::where('category', 'class_type')->get();
-            return ResponseFormatter::success(ParamResource::collection($param), $message);
-        }
+        return $this->param($request, 'class_type', 'get class type data success');
     }
 
     public function get_update_type(Request $request) {
-        $request->validate([
-            'id' => [
-                'nullable',
-                Rule::exists('params', 'id')->where(function($query) {
-                    return $query->where('category', 'update_type');
-                })
-            ]
-        ]);
-
-        $message = 'get update type data success';
-        if($request->id){
-            $param = Param::find($request->id);
-            return ResponseFormatter::success(new ParamResource($param), $message);
-        } else {
-            $param = Param::where('category', 'update_type')->get();
-            return ResponseFormatter::success(ParamResource::collection($param), $message);
-        }
+        return $this->param($request, 'update_type', 'get update type data success');
     }
 
     public function get_complaint_type(Request $request) {
+        return $this->param($request, 'complaint_type', 'get complaint type data success');
+    }
+
+    public function get_category_client(Request $request) {
+        return $this->param($request, 'category_client', 'get category client type data success');
+    }
+
+    public function param ($request, $category, $message) {
         $request->validate([
             'id' => [
                 'nullable',
-                Rule::exists('params', 'id')->where(function($query) {
-                    return $query->where('category', 'complaint_type');
+                Rule::exists('params', 'id')->where(function($query) use ($category) {
+                    return $query->where('category', $category);
                 })
             ]
         ]);
 
-        $message = 'get complaint type data success';
         if($request->id){
             $param = Param::find($request->id);
             return ResponseFormatter::success(new ParamResource($param), $message);
         } else {
-            $param = Param::where('category', 'complaint_type')->get();
+            $param = Param::where('category', $category)->get();
             return ResponseFormatter::success(ParamResource::collection($param), $message);
         }
     }

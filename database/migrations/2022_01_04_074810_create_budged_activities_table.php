@@ -17,7 +17,7 @@ class CreateBudgedActivitiesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('activity_name');
             $table->foreignUuid('category_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignUuid('client_id')->constrained('clients')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('client_id')->constrained('clients')->onUpdate('cascade');
             $table->enum('status', ['pendding', 'process', 'finish']);
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ class Mak extends Model
     protected $table = 'maks';
     protected $fillable = [
         'budged_activity_id',
-        'coba_mak',
+        'code_mak',
         'budged'
     ];
 }

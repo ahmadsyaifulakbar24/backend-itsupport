@@ -48,7 +48,7 @@ class HelpdeskDetailResource extends JsonResource
 
             // file 
             'approval_document' => FileResource::collection($this->fileQuery('approval_document')),
-            'flayer' => FileResource::collection($this->fileQuery('flayer')),
+            'flyer' => FileResource::collection($this->fileQuery('flyer')),
             'document' => FileResource::collection($this->fileQuery('document')),
             'latter' => FileResource::collection($this->fileQuery('latter')),
 
