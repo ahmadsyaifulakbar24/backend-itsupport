@@ -69,7 +69,7 @@ class CreateHelpdeskController extends Controller
             $request->validate([
                 'title' => ['required', 'string'],
                 'flyer' => ['required', 'array'],
-                'flyer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
+                'flyer.*' => ['required', 'file'],
                 'signature_id' => [
                     'required',
                     Rule::exists('params', 'id')->where(function ($query) {
@@ -86,7 +86,7 @@ class CreateHelpdeskController extends Controller
             $request->validate([
                 'title' => ['required', 'string'],
                 'flyer' => ['required', 'array'],
-                'flyer.*' => ['required', 'image', 'mimes:jpg,jpeg,png,gif'],
+                'flyer.*' => ['required', 'file'],
                 'from_date' => ['required', 'date'],
                 'till_date' => ['required', 'date', 'after:from_date'],
                 'class_type_id' => [

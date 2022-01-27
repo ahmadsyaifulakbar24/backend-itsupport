@@ -5,6 +5,10 @@ use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\UserController;
 use App\Http\Controllers\API\v1\BudgedActivity\CreateBudgedActivityController;
+use App\Http\Controllers\API\v1\BudgedActivity\DeleteBudgedActivityController;
+use App\Http\Controllers\API\v1\BudgedActivity\GetBudgedActivityController;
+use App\Http\Controllers\API\v1\BudgedActivity\MakController;
+use App\Http\Controllers\API\v1\BudgedActivity\UpdateBudgedActivityController;
 use App\Http\Controllers\API\v1\Client\ClientController;
 use App\Http\Controllers\API\v1\Comment\CommentController;
 use App\Http\Controllers\API\v1\File\FileController;
@@ -100,7 +104,14 @@ Route::prefix('v1')->group(function() {
         });
 
         Route::prefix('/budged_activity')->group(function () {
+            Route::get('/', [GetBudgedActivityController::class, 'get']);
             Route::post('/create', [CreateBudgedActivityController::class, 'create']);
+            Route::patch('/update', [UpdateBudgedActivityController::class, 'update']);
+            Route::delete('/delete', [DeleteBudgedActivityController::class, 'delete']);
+        });
+
+        Route::prefix('/mak')->group(function () {
+            Route::post('/create', [MakController::class, 'create']);
         });
     });
 });

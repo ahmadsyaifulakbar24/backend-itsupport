@@ -18,6 +18,7 @@ class CreateMaksTable extends Migration
             $table->foreignUuid('budged_activity_id')->constrained('budged_activities')->onDelete('cascade')->onUpdate('cascade');
             $table->string('code_mak')->unique();
             $table->bigInteger('budged');
+            $table->enum('status', ['process', 'finish']);
             $table->timestamps();
         });
     }

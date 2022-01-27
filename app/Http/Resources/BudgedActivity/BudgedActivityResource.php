@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\BudgedActivity;
 
+use App\Http\Resources\Mak\MakResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BudgedActivityResource extends JsonResource
@@ -14,6 +15,21 @@ class BudgedActivityResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $data['id'] = $this->id;
+        $data['activity_name'] = $this->activity_name;
+        $data['category'] = [
+            'id' => $this->category->id,
+            'category' => $this->category->param,
+        ];
+        $data['client_id'] = $this->client_id;
+
+        if($this->category->alias == 'kontraktual') {
+            $data['mak'] = new MakResource($this->mak[0]);
+        }
+
+        $data['created_at'] = $this->created_at;
+        $data['updated_at'] = $this->updated_at;
+
+        return $data;
     }
 }

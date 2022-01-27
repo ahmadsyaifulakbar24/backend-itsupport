@@ -16,7 +16,6 @@ class BudgedActivity extends Model
         'activity_name',
         'category_id',
         'client_id',
-        'status'
     ];
 
     public function getCreatedAtAttribute($date) {
@@ -27,6 +26,10 @@ class BudgedActivity extends Model
         return Carbon::parse($date)->format('Y-m-d H:i:s');
     }
 
+    public function category () {
+        return $this->belongsTo(Param::class, 'category_id');
+    }
+    
     public function mak()
     {
         return $this->hasMany(Mak::class, 'budged_activity_id');
