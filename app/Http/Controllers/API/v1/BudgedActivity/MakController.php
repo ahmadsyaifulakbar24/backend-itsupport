@@ -11,6 +11,27 @@ use Illuminate\Http\Request;
 
 class MakController extends Controller
 {
+    public function get (Request $request)
+    {
+        $request->validate([
+            'id' => ['nullable', 'exists:maks,id'],
+            'search' => ['nullable', 'string'],
+            'limit' => ['nullable', 'integer']
+        ]);
+        $limit = $request->input('limit', 10);
+
+        if($request->id) {
+            $mak = Mak::find($request->id);
+            return ResponseFormatter::success(new MakResource($mak), 'get mak data success');
+        }
+
+        $mak = Mak::query();
+        if($request->search) {
+            $mak->where('code_mak', 'like', '%'.$request->search.'%');
+        }
+        return ResponseFormatter::success(MakResource::collection($mak->paginate($limit))->response()->getData(true), 'get mak data success');
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -26,7 +47,6 @@ class MakController extends Controller
         $mak = $budged_activity->mak()->create($input);
         return ResponseFormatter::success(new MakResource($mak), 'create mak data success');
     }
-
     
     public function update(Request $request)
     {
@@ -34,10 +54,10 @@ class MakController extends Controller
             'id' => ['required', 'exists:maks,id'],
         ]);
         $mak = Mak::find($request->id);
-        if($mak->monitoring->isNotEmpmty()) {
+        if($mak->monitoring->isNotEmpty()) {
             return ResponseFormatter::error([
                 'message' => 'cannot update this data'
-            ], 'update mak data failes');
+            ], 'update mak data failed');
         } else {
             $request->validate([
                 'code_mak' => ['required', 'unique:maks,code_mak,'.$request->id],
@@ -47,5 +67,21 @@ class MakController extends Controller
             return ResponseFormatter::success(new MakResource($mak), 'update mak data success');
         }
 
+    }
+
+    public function delete (Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'exists:maks,id'],
+        ]);
+        $mak = Mak::find($request->id);
+        if($mak->monitoring->isNotEmpty()) {
+            return ResponseFormatter::error([
+                'message' => 'cannot delete this data'
+            ], 'delete mak data failed');
+        } else {
+            $mak->delete();
+            return ResponseFormatter::success(null, 'delete mak data success');
+        }
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\API\v1\BudgedActivity\CreateBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\DeleteBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\GetBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\MakController;
+use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\CreateMonitoringController;
 use App\Http\Controllers\API\v1\BudgedActivity\UpdateBudgedActivityController;
 use App\Http\Controllers\API\v1\Client\ClientController;
 use App\Http\Controllers\API\v1\Comment\CommentController;
@@ -111,7 +112,14 @@ Route::prefix('v1')->group(function() {
         });
 
         Route::prefix('/mak')->group(function () {
+            Route::get('/', [MakController::class, 'get']);
             Route::post('/create', [MakController::class, 'create']);
+            Route::patch('/update', [MakController::class, 'update']);
+            Route::delete('/delete', [MakController::class, 'delete']);
+        });
+
+        Route::prefix('/monitoring')->group(function () {
+            Route::post('/create', [CreateMonitoringController::class, 'create']);
         });
     });
 });

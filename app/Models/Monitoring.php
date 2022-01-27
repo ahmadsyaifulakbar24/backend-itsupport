@@ -15,7 +15,11 @@ class Monitoring extends Model
     protected $fillable = [
         'mak_id',
         'name',
-        'milestone_id'
+        'milestone_id',
+        'start_date',
+        'finish_date',
+        'description',
+        'status'
     ];
 
     public function getCreatedAtAttribute($date) {
@@ -29,5 +33,10 @@ class Monitoring extends Model
     public function history()
     {
         return $this->hasMany(History::class, 'monitoring_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'monitoring_assigments', 'monitoring_id', 'user_id');
     }
 }

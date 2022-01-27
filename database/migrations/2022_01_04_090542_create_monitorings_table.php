@@ -18,6 +18,10 @@ class CreateMonitoringsTable extends Migration
             $table->foreignUuid('mak_id')->constrained('maks')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
             $table->foreignUuid('milestone_id')->constrained('params')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('start_date');
+            $table->date('finish_date');
+            $table->text('description');
+            $table->enum('status', ['pending', 'process', 'finish'])->default('pending');
             $table->timestamps();
         });
     }
