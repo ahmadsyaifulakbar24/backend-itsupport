@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\API\v1\BudgedActivity\Monitoring;
 
+use App\Helpers\FileHelpers;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\File\FileResource;
 use App\Http\Resources\Monitoring\MonitoringResouce;
 use App\Models\Mak;
+use App\Models\Monitoring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -33,6 +36,7 @@ class CreateMonitoringController extends Controller
         ]);
 
         $input = $request->all();
+        $input['status'] = 'new';
 
         $mak = Mak::find($request->mak_id);
         
@@ -57,5 +61,26 @@ class CreateMonitoringController extends Controller
        }
 
        return $assigments;
+    }
+
+    public function upload_file(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'exists:monitorings,id'],
+            'file' => ['required', 'file']
+        ]);
+
+        $monitoring = Monitoring::find($request->id);
+        
+        $path = FileHelpers::upload_file('monitoring', $request->file);
+        $file_name = $request->file->getClientOriginalName();
+        $file = [
+            'type' => 'support_file',
+            'file_name' => $file_name,
+            'path' => $path
+        ];
+        $file = $monitoring->file()->create($file);
+
+        return ResponseFormatter::success(new FileResource($file), 'upload file data success');
     }
 }

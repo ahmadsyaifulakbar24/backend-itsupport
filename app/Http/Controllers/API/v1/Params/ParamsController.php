@@ -39,11 +39,11 @@ class ParamsController extends Controller
     }
 
     public function get_class_type(Request $request) {
-        return $this->param($request, 'class_type', 'get class type data success');
+        return $this->param($request, 'class_type', 'get class data success');
     }
 
     public function get_update_type(Request $request) {
-        return $this->param($request, 'update_type', 'get update type data success');
+        return $this->param($request, 'update_type', 'get update data success');
     }
 
     public function get_complaint_type(Request $request) {
@@ -51,7 +51,11 @@ class ParamsController extends Controller
     }
 
     public function get_category_client(Request $request) {
-        return $this->param($request, 'category_client', 'get category client type data success');
+        return $this->param($request, 'category_client', 'get category client data success');
+    }
+
+    public function get_milestone(Request $request) {
+        return $this->param($request, 'milestone', 'get milestone data success');
     }
 
     public function param ($request, $category, $message) {

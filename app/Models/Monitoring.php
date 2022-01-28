@@ -39,4 +39,19 @@ class Monitoring extends Model
     {
         return $this->belongsToMany(User::class, 'monitoring_assigments', 'monitoring_id', 'user_id');
     }
+
+    public function file()
+    {
+        return $this->hasMany(File::class, 'monitoring_id');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'monitoring_id');
+    }
+
+    public function milestone ()
+    {
+        return $this->belongsTo(Param::class, 'milestone_id');
+    }
 }

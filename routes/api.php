@@ -9,6 +9,9 @@ use App\Http\Controllers\API\v1\BudgedActivity\DeleteBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\GetBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\MakController;
 use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\CreateMonitoringController;
+use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\DeleteMonitoringController;
+use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\GetMonitoringController;
+use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\UpdateMonitoringController;
 use App\Http\Controllers\API\v1\BudgedActivity\UpdateBudgedActivityController;
 use App\Http\Controllers\API\v1\Client\ClientController;
 use App\Http\Controllers\API\v1\Comment\CommentController;
@@ -62,6 +65,7 @@ Route::prefix('v1')->group(function() {
             Route::get('/update_type', [ParamsController::class, 'get_update_type']);
             Route::get('/complaint_type', [ParamsController::class, 'get_complaint_type']);
             Route::get('/category_client', [ParamsController::class, 'get_category_client']);
+            Route::get('/milestone', [ParamsController::class, 'get_milestone']);
         });
 
         Route::get('/service_category', [ServiceCategoryController::class, 'get_service_category']);
@@ -73,9 +77,7 @@ Route::prefix('v1')->group(function() {
             Route::get('/', [GetHelpdeskController::class, 'get_helpdesk']);
             Route::delete('/', DeleteHelpdeskController::class);
             Route::post('/file/create', [FileHelpdeskController::class, 'create']);
-
             Route::post('/assigment/create', [HelpdeskAssigmentController::class, 'create']);
-
         });
 
         Route::prefix('/helpdesk_step')->group(function () {
@@ -85,10 +87,12 @@ Route::prefix('v1')->group(function() {
         });
 
         Route::prefix('/file')->group(function () {
+            Route::get('/', [FileController::class, 'get']);
             Route::delete('/', [FileController::class, 'destroy']);
         });
 
         Route::prefix('/comment')->group(function () {
+            Route::get('/get', [CommentController::class, 'get']);
             Route::post('/create', [CommentController::class, 'create']);
             Route::delete('/delete', [CommentController::class, 'delete']);
         });
@@ -119,7 +123,12 @@ Route::prefix('v1')->group(function() {
         });
 
         Route::prefix('/monitoring')->group(function () {
+            Route::get('/get', [GetMonitoringController::class, 'get']);
             Route::post('/create', [CreateMonitoringController::class, 'create']);
+            Route::patch('/update', [UpdateMonitoringController::class, 'update']);
+            Route::patch('/update_status', [UpdateMonitoringController::class, 'update_status']);
+            Route::delete('/delete', [DeleteMonitoringController::class, 'delete']);
+            Route::post('/upload_file', [CreateMonitoringController::class, 'upload_file']);
         });
     });
 });
