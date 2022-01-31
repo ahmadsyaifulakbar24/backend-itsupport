@@ -60,6 +60,11 @@ class Helpdesk extends Model
         return $this->hasMany(HelpdeskAssigment::class, 'helpdesk_id');
     }
 
+    public function helpdesk_join_assigment()
+    {
+        
+    }
+
     public function service_category()
     {
         return $this->belongsTo(ServiceCategory::class, 'service_category_id');

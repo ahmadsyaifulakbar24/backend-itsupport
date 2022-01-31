@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Helpdesk\HelpdeskDetailResource;
 use App\Http\Resources\Helpdesk\HelpdeskResource;
 use App\Models\Helpdesk;
+use App\Models\HelpdeskAssigment;
 use Illuminate\Http\Request;
 
 class GetHelpdeskController extends Controller
@@ -16,6 +17,7 @@ class GetHelpdeskController extends Controller
         $request->validate([
             'id' => ['nullable', 'exists:helpdesks,id'],
             'ticket_number' => ['nullable', 'exists:helpdesks,ticket_number'],
+            'assigment_id' => ['nullable', 'exists:helpdesk_assigments,user_id'],
             'user_id' => ['nullable', 'exists:users,id'],
             'search' => ['nullable', 'string'],
             'limit' => ['nullable', 'numeric']
@@ -32,7 +34,12 @@ class GetHelpdeskController extends Controller
         } else {
             $limit = $request->input('limit', 10);
             $helpdesk = Helpdesk::query();
-            if($request->user_id) {
+
+            if($request->assigment_id) {
+                $helpdesk->Wherehas('helpdesk_assigment', function($query) use ($request) {
+                    $query->where('user_id', $request->assigment_id);
+                });
+            } else if($request->user_id) {
                 $helpdesk->where('user_id', $request->user_id);
             }
 
