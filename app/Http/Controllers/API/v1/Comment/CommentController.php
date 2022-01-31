@@ -34,7 +34,7 @@ class CommentController extends Controller
         }
         $comment = $query->comment;
         return ResponseFormatter::success(CommentResource::collection($comment), 'get comment data success');
-    }
+    }  
 
     public function create(Request $request)
     {

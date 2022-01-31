@@ -21,7 +21,7 @@ class CreateMonitoringsTable extends Migration
             $table->date('start_date');
             $table->date('finish_date');
             $table->text('description');
-            $table->enum('status', ['new', 'process', 'finish'])->default('pending');
+            $table->enum('status', ['new', 'process', 'finish'])->default('new');
             $table->timestamps();
         });
     }

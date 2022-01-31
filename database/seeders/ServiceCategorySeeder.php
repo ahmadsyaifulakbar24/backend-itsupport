@@ -219,7 +219,7 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategoryStep::create([
             'service_category_id' => $C7->id,
-            'name' => 'Dispoisi Kabag',
+            'name' => 'Disposisi Kabag',
             'order' => 2
         ]);
 
@@ -266,7 +266,7 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategoryStep::create([
             'service_category_id' => $C8->id,
-            'name' => 'Pengelolaam',
+            'name' => 'Pengelolaan',
             'order' => 4
         ]);
 
@@ -342,7 +342,7 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategoryStep::create([
             'service_category_id' => $C10->id,
-            'name' => 'Itegrasi',
+            'name' => 'Integrasi',
             'order' => 6
         ]);
 
@@ -365,12 +365,12 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategoryStep::create([
             'service_category_id' => $C11->id,
-            'name' => 'Peroses Eksekusi',
+            'name' => 'Proses Eksekusi',
             'order' => 3
         ]);
 
         $C12 = ServiceCategory::create([
-            'category' => 'Layanan Peliharaan Sistem Informasi Kementerian',
+            'category' => 'Layanan Pemeliharaan Sistem Informasi Kementerian',
             'alias' => 'C12'
         ]);
 

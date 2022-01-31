@@ -211,27 +211,6 @@ class ParamSeeder extends Seeder
         ]);
 
         Param::create([
-            'parent_id' => $es15->id,
-            'category' => 'eselon2',
-            'param' => 'Kepala Biro Hukum dan Kerja Sama',
-            'alias' => null
-        ]);
-
-        Param::create([
-            'parent_id' => $es15->id,
-            'category' => 'eselon2',
-            'param' => 'Kepala Biro Komunikasi dan Teknologi Informasi',
-            'alias' => null
-        ]);
-
-        Param::create([
-            'parent_id' => $es15->id,
-            'category' => 'eselon2',
-            'param' => 'Kepala Biro Umum dan Keuangan',
-            'alias' => null
-        ]);
-
-        Param::create([
             'parent_id' => null,
             'category' => 'email_type',
             'param' => 'Email Personal',
