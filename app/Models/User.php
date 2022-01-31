@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     public function getPathPhotoAttribute()
     {
-        return url('') . Storage::url($this->attributes['path']);
+        return url('') . Storage::url($this->attributes['photo']);
     }
     
     public function helpdesk()
