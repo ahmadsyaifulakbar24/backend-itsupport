@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\Params\ParamResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserDetailResouce extends JsonResource
@@ -20,8 +21,8 @@ class UserDetailResouce extends JsonResource
             'nip' => $this->nip,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'eselon1' => $this->eselon1,
-            'eselon2' => $this->eselon2,
+            'eselon1' => new ParamResource($this->eselon1),
+            'eselon2' => new ParamResource($this->eselon2),
             'position' => $this->position,
             'role' => $this->role,
             'path_photo' => (!empty($this->photo)) ? $this->path_photo : null,
