@@ -83,6 +83,7 @@ Route::prefix('v1')->group(function() {
             Route::delete('/', DeleteHelpdeskController::class);
             Route::post('/file/create', [FileHelpdeskController::class, 'create']);
             Route::post('/assigment/create', [HelpdeskAssigmentController::class, 'create']);
+            Route::get('/assigment', [HelpdeskAssigmentController::class, 'get']);
         });
 
         Route::prefix('/helpdesk_step')->group(function () {
