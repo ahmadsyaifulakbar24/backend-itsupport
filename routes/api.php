@@ -28,6 +28,7 @@ use App\Http\Controllers\API\v1\Helpdesk\UpdateHelpdeskController;
 use App\Http\Controllers\API\v1\History\HistoryController;
 use App\Http\Controllers\API\v1\Params\ParamsController;
 use App\Http\Controllers\API\v1\ServiceCategory\ServiceCategoryController;
+use App\Http\Controllers\API\v1\User\GetUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,10 @@ Route::prefix('v1')->group(function() {
     Route::middleware('auth:api')->group(function() {
         Route::get("/user-login", UserController::class);
         Route::delete("/logout", LogoutController::class);
+
+        Route::prefix('/user')->group(function() {
+            Route::get('/', [GetUserController::class, 'get']);
+        });
         
         Route::prefix('/param')->group(function() {
             Route::get('/email_type', [ParamsController::class, 'get_email_type']);
