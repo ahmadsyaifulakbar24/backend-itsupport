@@ -39,7 +39,7 @@ class GetHelpdeskController extends Controller
             if($request->search) {
                 $helpdesk->where('title', 'like', '%'. $request->search .'%');
             }
-            return ResponseFormatter::success(HelpdeskResource::collection($helpdesk->orderBy('desc', 'created_at')->paginate($limit))->response()->getData(true), $message);
+            return ResponseFormatter::success(HelpdeskResource::collection($helpdesk->orderBy('created_at', 'desc')->paginate($limit))->response()->getData(true), $message);
         }
 
     }
