@@ -82,8 +82,11 @@ Route::prefix('v1')->group(function() {
             Route::get('/', [GetHelpdeskController::class, 'get_helpdesk']);
             Route::delete('/', DeleteHelpdeskController::class);
             Route::post('/file/create', [FileHelpdeskController::class, 'create']);
-            Route::post('/assigment/create', [HelpdeskAssigmentController::class, 'create']);
-            Route::get('/assigment', [HelpdeskAssigmentController::class, 'get']);
+            Route::prefix('assigment')->group(function() {
+                Route::post('/create', [HelpdeskAssigmentController::class, 'create']);
+                Route::get('/', [HelpdeskAssigmentController::class, 'get']);
+                Route::delete('/delete', [HelpdeskAssigmentController::class, 'delete']);
+            });
         });
 
         Route::prefix('/helpdesk_step')->group(function () {

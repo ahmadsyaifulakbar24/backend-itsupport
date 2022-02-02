@@ -31,6 +31,7 @@ class HistoryController extends Controller
         } else if($request->type == 'monitoring') {
             $query = Monitoring::find($request->monitoring_id);
         }
-        return ResponseFormatter::success(HistoryResource::collection($query->history), 'get history data success');
+        $result = $query->history()->orderBy('created_at', 'desc')->get();
+        return ResponseFormatter::success(HistoryResource::collection($result), 'get history data success');
     }
 }

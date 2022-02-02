@@ -32,7 +32,7 @@ class CommentController extends Controller
         } else if($request->type == 'monitoring') {
             $query = Monitoring::find($request->monitoring_id);
         }
-        $comment = $query->comment;
+        $comment = $query->comment()->orderBy('created_at', 'desc')->get();
         return ResponseFormatter::success(CommentResource::collection($comment), 'get comment data success');
     }  
 
