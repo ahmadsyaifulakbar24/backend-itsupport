@@ -30,7 +30,7 @@ class CreateHelpdesksTable extends Migration
             $table->foreignUuid('update_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('complaint_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->text('description')->nullable();
-            $table->enum('status', ['pending', 'process', 'finish']);
+            $table->enum('status', ['pending', 'process', 'finish', 'reject']);
             $table->timestamps();
         });
     }

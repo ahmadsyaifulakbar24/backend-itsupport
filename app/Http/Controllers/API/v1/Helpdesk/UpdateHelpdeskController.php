@@ -132,7 +132,7 @@ class UpdateHelpdeskController extends Controller
     {
         $request->validate([
             'id' => ['required', 'exists:helpdesks,id'],
-            'status' => ['required', 'in:pending,process,finish']
+            'status' => ['required', 'in:pending,process,finish,reject']
         ]);
 
         $helpdesk = Helpdesk::find($request->id);

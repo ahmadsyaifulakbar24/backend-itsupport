@@ -4,6 +4,7 @@ use App\Http\Controllers\API\v1\Auth\LoginController;
 use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\UserController;
+use App\Http\Controllers\API\v1\BudgedActivity\BudgedActivityReportController;
 use App\Http\Controllers\API\v1\BudgedActivity\CreateBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\DeleteBudgedActivityController;
 use App\Http\Controllers\API\v1\BudgedActivity\GetBudgedActivityController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\CreateMonitoringContro
 use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\DeleteMonitoringController;
 use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\GetMonitoringController;
 use App\Http\Controllers\API\v1\BudgedActivity\Monitoring\UpdateMonitoringController;
+use App\Http\Controllers\API\v1\BudgedActivity\MonitoringBaseController;
 use App\Http\Controllers\API\v1\BudgedActivity\UpdateBudgedActivityController;
 use App\Http\Controllers\API\v1\Client\ClientController;
 use App\Http\Controllers\API\v1\Comment\CommentController;
@@ -122,6 +124,16 @@ Route::prefix('v1')->group(function() {
             Route::post('/create', [CreateBudgedActivityController::class, 'create']);
             Route::patch('/update', [UpdateBudgedActivityController::class, 'update']);
             Route::delete('/delete', [DeleteBudgedActivityController::class, 'delete']);
+
+            Route::prefix('budged')->group(function() {
+                Route::patch('/get', [MonitoringBaseController::class, 'get']);
+                Route::patch('/update', [MonitoringBaseController::class, 'budged']);
+            });
+
+            Route::prefix('report')->group(function() {
+                Route::get('milestone_schedule', [BudgedActivityReportController::class, 'milestone_schedule']);
+                Route::get('total_milestone_by_status', [BudgedActivityReportController::class, 'total_milestone_by_status']);
+            });
         });
 
         Route::prefix('/mak')->group(function () {

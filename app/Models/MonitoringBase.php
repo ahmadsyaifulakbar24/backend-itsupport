@@ -15,4 +15,6 @@ class MonitoringBase extends Model
         'slug',
         'total_budged'
     ];
+
+    public $timestamps = false;
 }

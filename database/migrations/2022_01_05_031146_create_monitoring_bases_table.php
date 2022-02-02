@@ -14,7 +14,7 @@ class CreateMonitoringBasesTable extends Migration
     public function up()
     {
         Schema::create('monitoring_bases', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->bigInteger('total_budged');
         });

@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ParamSeeder::class,
             ServiceCategorySeeder::class,
+            MonitoringBaseSeeder::class,
             UserSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
     }
 }
