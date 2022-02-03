@@ -141,6 +141,9 @@ Route::prefix('v1')->group(function() {
                 Route::get('total_milestone_by_status', [BudgedActivityReportController::class, 'total_milestone_by_status']);
                 Route::get('total_monitoring', [BudgedActivityReportController::class, 'total_monitoring']);
                 Route::get('job_timeline', [BudgedActivityReportController::class, 'job_timeline']);
+                Route::get('budged_statistics', [BudgedActivityReportController::class, 'budged_statistics']);
+                Route::get('budged_activity_by_client', [BudgedActivityReportController::class, 'budged_activity_by_client']);
+                Route::get('total_budged_activity_by_range', [BudgedActivityReportController::class, 'total_budged_activity_by_range']);
             });
         });
 

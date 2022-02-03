@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API\v1\BudgedActivity;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BudgedActivity\Report\TotalBudgedActivityByClientResouce;
+use App\Models\BudgedActivity;
 use App\Models\Monitoring;
 use App\Models\ViewMonitoringDetail;
 use Facade\FlareClient\Http\Response;
@@ -38,12 +40,27 @@ class BudgedActivityReportController extends Controller
         return ResponseFormatter::success($result, 'get job_timeline data success');
     }
     
+    public function budged_statistics()
+    {
+        $result = DB::table('vw_budged_statistics')->first();
+        return ResponseFormatter::success($result, 'get budged statistics data success');
+    }
+
+    public function budged_activity_by_client()
+    {
+        $budged_activity = BudgedActivity::budgedActivityByClient()->get();
+        return ResponseFormatter::success(TotalBudgedActivityByClientResouce::collection($budged_activity), 'success get total budged acctivity by client');
+    }
+
+    public function total_budged_activity_by_range() {
+        $result = DB::table('vw_total_budged_activity_by_range')->first();
+        return ResponseFormatter::success($result, 'get total budged activity by rang data success');
+    }
+
     public function validateForm(Request $request)
     {
         $request->validate([
             'mak_id' => ['required', 'exists:maks,id'],
         ]);
-    }
-
-    
+    }    
 }

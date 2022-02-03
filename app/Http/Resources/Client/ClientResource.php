@@ -18,8 +18,8 @@ class ClientResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'category' => [
-                'id' => $this->category_id,
-                'category' => $this->category,
+                'id' => $this->category->id,
+                'category' => $this->category->param,
             ],
             'lock' => ($this->budged_activity()->count() > 0 ) ? true : false,
             'created_at' => $this->created_at,

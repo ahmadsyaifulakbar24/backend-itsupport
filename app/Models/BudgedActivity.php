@@ -6,6 +6,7 @@ use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class BudgedActivity extends Model
 {
@@ -26,6 +27,13 @@ class BudgedActivity extends Model
         return Carbon::parse($date)->format('Y-m-d H:i:s');
     }
 
+    public function scopeBudgedActivityByClient ($query) {
+        return $query->select(
+            'client_id', 
+            DB::raw("COUNT(*) as total")
+        )->groupBY('client_id');
+    }
+    
     public function category () {
         return $this->belongsTo(Param::class, 'category_id');
     }
@@ -33,5 +41,10 @@ class BudgedActivity extends Model
     public function mak()
     {
         return $this->hasMany(Mak::class, 'budged_activity_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }

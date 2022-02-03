@@ -28,11 +28,15 @@ class Client extends Model
     public function scopeJoinCategory($query)
     {
         return $query->join('params as b', 'b.id', '=', 'clients.category_id')
-            ->select('clients.*', 'b.param as category', 'b.alias');
+            ->select('clients.*', 'b.alias');
     }
 
     public function budged_activity()
     {
         return $this->hasMany(BudgedActivity::class, 'client_id');
+    }
+
+    public function category () {
+        return $this->belongsTo(Param::class, 'category_id');
     }
 }

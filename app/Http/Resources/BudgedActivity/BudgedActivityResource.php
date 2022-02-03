@@ -29,6 +29,8 @@ class BudgedActivityResource extends JsonResource
 
         $data['total_budged'] = $this->total_budged;
         $data['progress'] = $this->progress;
+        $data['min_date'] = $this->min_date;
+        $data['max_date'] = $this->max_date;
         $data['status'] = $this->status;
         $data['created_at'] = $this->created_at;
         $data['updated_at'] = $this->updated_at;
