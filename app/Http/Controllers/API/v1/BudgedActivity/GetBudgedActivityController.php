@@ -6,6 +6,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BudgedActivity\BudgedActivityResource;
 use App\Models\BudgedActivity;
+use App\Models\ViewBudgedActivityDetail;
 use Illuminate\Http\Request;
 
 class GetBudgedActivityController extends Controller
@@ -20,11 +21,11 @@ class GetBudgedActivityController extends Controller
         $limit = $request->input('limit', 10);
 
         if($request->id) {
-            $budged_activity = BudgedActivity::find($request->id);
+            $budged_activity = ViewBudgedActivityDetail::find($request->id);
             return ResponseFormatter::success(new BudgedActivityResource($budged_activity));
         }
 
-        $budged_activity = BudgedActivity::query();
+        $budged_activity = ViewBudgedActivityDetail::query();
         if($request->search) {
             $budged_activity->where('activity_name', 'like', '%'.$request->search.'%');
         }

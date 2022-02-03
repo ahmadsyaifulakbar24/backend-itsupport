@@ -27,6 +27,9 @@ class BudgedActivityResource extends JsonResource
             $data['mak'] = new MakResource($this->mak[0]);
         }
 
+        $data['total_budged'] = $this->total_budged;
+        $data['progress'] = $this->progress;
+        $data['status'] = $this->status;
         $data['created_at'] = $this->created_at;
         $data['updated_at'] = $this->updated_at;
 

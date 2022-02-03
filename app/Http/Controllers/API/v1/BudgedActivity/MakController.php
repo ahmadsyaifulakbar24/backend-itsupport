@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Mak\MakResource;
 use App\Models\BudgedActivity;
 use App\Models\Mak;
+use App\Models\ViewMakDetail;
 use Illuminate\Http\Request;
 
 class MakController extends Controller
@@ -21,14 +22,15 @@ class MakController extends Controller
         $limit = $request->input('limit', 10);
 
         if($request->id) {
-            $mak = Mak::find($request->id);
+            $mak = ViewMakDetail::find($request->id);
             return ResponseFormatter::success(new MakResource($mak), 'get mak data success');
         }
 
-        $mak = Mak::query();
+        $mak = ViewMakDetail::query();
         if($request->search) {
             $mak->where('code_mak', 'like', '%'.$request->search.'%');
         }
+
         return ResponseFormatter::success(MakResource::collection($mak->paginate($limit))->response()->getData(true), 'get mak data success');
     }
 

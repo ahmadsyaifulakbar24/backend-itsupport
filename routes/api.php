@@ -23,6 +23,7 @@ use App\Http\Controllers\API\v1\Helpdesk\DeleteHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\FileHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\GetHelpdeskController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskAssigmentController;
+use App\Http\Controllers\API\v1\Helpdesk\HelpdeskReportController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\FileHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\GetHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\UpdateHelpdeskStepController;
@@ -89,6 +90,11 @@ Route::prefix('v1')->group(function() {
                 Route::get('/', [HelpdeskAssigmentController::class, 'get']);
                 Route::delete('/delete', [HelpdeskAssigmentController::class, 'delete']);
             });
+
+            Route::prefix('report')->group(function() {
+                Route::get('total_user_by_eselon1', [HelpdeskReportController::class, 'total_user_by_eselon1']);
+                Route::get('total_helpdesk_by_service_category', [HelpdeskReportController::class, 'total_helpdesk_by_service_category']);
+            });
         });
 
         Route::prefix('/helpdesk_step')->group(function () {
@@ -133,6 +139,8 @@ Route::prefix('v1')->group(function() {
             Route::prefix('report')->group(function() {
                 Route::get('milestone_schedule', [BudgedActivityReportController::class, 'milestone_schedule']);
                 Route::get('total_milestone_by_status', [BudgedActivityReportController::class, 'total_milestone_by_status']);
+                Route::get('total_monitoring', [BudgedActivityReportController::class, 'total_monitoring']);
+                Route::get('job_timeline', [BudgedActivityReportController::class, 'job_timeline']);
             });
         });
 

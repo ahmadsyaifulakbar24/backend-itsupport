@@ -19,6 +19,7 @@ class MakResource extends JsonResource
             'code_mak' => $this->code_mak,
             'budged' => $this->budged,
             'status' => $this->status,
+            'progress' => $this->progress,
             'lock' => $this->monitoring->isNotEmpty() ? true : false,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

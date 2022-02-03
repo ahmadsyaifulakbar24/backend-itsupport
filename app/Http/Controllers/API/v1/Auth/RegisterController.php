@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'nip' => ['required', 'unique:users,nip'],
+            'nip' => ['nullable', 'unique:users,nip'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'numeric', 'digits_between:7,15'],
             'eselon1_id' => [

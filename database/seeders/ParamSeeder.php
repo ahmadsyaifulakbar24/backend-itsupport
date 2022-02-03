@@ -29,7 +29,7 @@ class ParamSeeder extends Seeder
         Param::create( [
             'id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon1',
-            'param'=>'Sekretaris Kementerian',
+            'param'=>'Sekretariat Kementerian',
         ]);
         
         Param::create( [
@@ -68,7 +68,7 @@ class ParamSeeder extends Seeder
             'id'=>'0e035bf5-6859-4c1c-b56a-7440e3a08c75',
             'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon2',
-            'param'=>'Kepala Biro Managemen Kinerja, Organisasi, dan SDM Aparatur',
+            'param'=>'Biro Managemen Kinerja, Organisasi, dan SDM Aparatur',
         ]);
                     
         Param::create( [
@@ -235,7 +235,7 @@ class ParamSeeder extends Seeder
             'id'=>'950dd79f-d31c-4d79-9de7-e973e21496d7',
             'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon2',
-            'param'=>'Kepala Biro Komunikasi dan Teknologi Informasi',
+            'param'=>'Biro Komunikasi dan Teknologi Informasi',
         ]);
                     
         Param::create( [
@@ -268,7 +268,7 @@ class ParamSeeder extends Seeder
             'id'=>'a820eae3-da9a-403a-8aa8-2313c7ce2c27',
             'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon2',
-            'param'=>'Kepala Biro Umum dan Keuangan',
+            'param'=>'Biro Umum dan Keuangan',
         ]);
                     
         Param::create( [
@@ -308,7 +308,7 @@ class ParamSeeder extends Seeder
             'id'=>'bdf6e348-d5af-4923-becf-47938af5ffd1',
             'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon2',
-            'param'=>'Kepala Biro Hukum dan Kerja Sama',
+            'param'=>'Biro Hukum dan Kerja Sama',
         ]);
                     
         Param::create( [
