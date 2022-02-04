@@ -32,6 +32,7 @@ use App\Http\Controllers\API\v1\History\HistoryController;
 use App\Http\Controllers\API\v1\Params\ParamsController;
 use App\Http\Controllers\API\v1\ServiceCategory\ServiceCategoryController;
 use App\Http\Controllers\API\v1\User\GetUserController;
+use App\Http\Controllers\API\v1\User\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +65,8 @@ Route::prefix('v1')->group(function() {
 
         Route::prefix('/user')->group(function() {
             Route::get('/', [GetUserController::class, 'get']);
+            Route::patch('/update', [UpdateUserController::class, 'update']);
+            Route::patch('/change_password', [UpdateUserController::class, 'change_password']);
         });
         
         Route::prefix('/param')->group(function() {
