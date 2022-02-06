@@ -19,6 +19,10 @@ class ServiceCategoryResource extends JsonResource
             'id' => $this->id,
             'category' => $this->category,
             'alias' => $this->alias,
+            'group' => [
+                'id' => $this->group->id,
+                'param' => $this->group->param,
+            ],
             'service_category_step' => ServiceCategoryStepResource::collection($this->service_category_step),
         ];
     }

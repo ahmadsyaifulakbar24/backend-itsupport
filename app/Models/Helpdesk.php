@@ -19,15 +19,36 @@ class Helpdesk extends Model
         'service_category_id',
         'title',
         'email_type_id',
+        'integration_of',
+        'integration_to',
         'from_date',
         'till_date',
         'execution_time',
-        'duration',
         'participant_capacity',
-        'signature_id',
+        'signature',
+        'zoom_option',
+        'zoom_link',
+        'presence',
         'class_type_id',
         'update_type_id',
         'complaint_type_id',
+        'koperasi_name',
+        'nik_koperasi',
+        'domain_name',
+        'ip_address',
+        'need_hosting',
+        'ram',
+        'size',
+        'os',
+        'processor',
+        'total_vm',
+        'ip_public',
+        'file_sharing_type',
+        'needs',
+        'total_user',
+        'email_admin',
+        'location',
+        'aplication_name',
         'description',
         'status'
     ];
@@ -77,11 +98,6 @@ class Helpdesk extends Model
         return $this->belongsTo(Param::class, 'email_type_id');
     }
 
-    public function signature()
-    {
-        return $this->belongsTo(Param::class, 'signature_id');
-    }
-
     public function class_type()
     {
         return $this->belongsTo(Param::class, 'class_type_id');
@@ -95,5 +111,10 @@ class Helpdesk extends Model
     public function complaint_type()
     {
         return $this->belongsTo(Param::class, 'complaint_type_id');
+    }
+
+    public function email_name()
+    {
+        return $this->hasMany(EmailName::class, 'helpdesk_id');
     }
 }

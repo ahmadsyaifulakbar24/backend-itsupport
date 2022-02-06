@@ -13,7 +13,9 @@ class ServiceCategory extends Model
     protected $table = 'service_categories';
     protected $fillable = [
         'category',
-        'alias'
+        'alias',
+        'group_id',
+        'order'
     ];
     
     public $timestamps = false;
@@ -21,5 +23,10 @@ class ServiceCategory extends Model
     public function service_category_step()
     {
         return $this->hasMany(ServiceCategoryStep::class, 'service_category_id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Param::class, 'group_id');
     }
 }

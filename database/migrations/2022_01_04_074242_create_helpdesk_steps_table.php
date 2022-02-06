@@ -17,7 +17,7 @@ class CreateHelpdeskStepsTable extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('helpdesk_id')->constrained('helpdesks')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignUuid('service_category_step_id')->constrained('service_category_steps')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('status', ['open', 'close']);
+            $table->enum('status', ['process', 'finish']);
             $table->text('description')->nullable();
             $table->timestamps();
         });

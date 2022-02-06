@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServiceCategoriesTable extends Migration
+class CreateEmailNamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateServiceCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_categories', function (Blueprint $table) {
+        Schema::create('email_names', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('category');
-            $table->string('alias')->unique();
-            $table->foreignUuid('group_id')->constrained('params')->onUpdate('cascade');
-            $table->integer('order');
+            $table->foreignUuid('helpdesk_id')->constrained('helpdesks')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('email_name');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateServiceCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_categories');
+        Schema::dropIfExists('email_names');
     }
 }

@@ -17,7 +17,7 @@ class ParamSeeder extends Seeder
         Param::create( [
             'id'=>'07f5280f-3989-4373-ae44-6e58529d5803',
             'category'=>'update_type',
-            'param'=>'Profil',
+            'param'=>'Press Release',
         ]);
 
         Param::create( [
@@ -80,13 +80,13 @@ class ParamSeeder extends Seeder
         Param::create( [
             'id'=>'2368c775-d8cb-43b1-ba11-eb9c70825dec',
             'category'=>'update_type',
-            'param'=>'Pengumuman',
+            'param'=>'Warta KUKM',
         ]);
                     
         Param::create( [
             'id'=>'292847ea-0a9c-400a-b88e-2a9c6cde6d82',
             'category'=>'update_type',
-            'param'=>'Regulasi',
+            'param'=>'Pengumuman',
         ]);
                     
         Param::create( [
@@ -175,15 +175,15 @@ class ParamSeeder extends Seeder
         ]);
                     
         Param::create( [
-            'id'=>'6d00a511-1db6-402e-92bd-51da9d99bfad',
-            'category'=>'signature',
-            'param'=>'Pejabat Pemberi Tanda Tangan',
-        ]);
-                    
-        Param::create( [
             'id'=>'739a3ea6-5b23-4271-a7a6-bb7500c198c4',
             'category'=>'update_type',
-            'param'=>'Publikasi',
+            'param'=>'Regulasi',
+        ]);
+
+        Param::create( [
+            'id'=>'e1f9569c-f944-4e15-8c0c-6da732fe74f7',
+            'category'=>'update_type',
+            'param'=>'Banner',
         ]);
                     
         Param::create( [
@@ -370,6 +370,30 @@ class ParamSeeder extends Seeder
             'category'=>'category_client',
             'param'=>'Swakelola',
             'alias'=>'swakelola'
+        ]);
+
+        Param::create( [
+            'id'=>'2b9f8c25-9710-460d-a771-4e5b3b956848',
+            'category'=>'service_category_group',
+            'param'=>'Software',
+        ]);
+
+        Param::create( [
+            'id'=>'5f47ba70-563c-4a69-b520-9175095249db',
+            'category'=>'service_category_group',
+            'param'=>'Hardware, Server dan Hosting',
+        ]);
+
+        Param::create( [
+            'id'=>'61b19685-b303-4b14-9341-a2e6776073df',
+            'category'=>'service_category_group',
+            'param'=>'Network',
+        ]);
+
+        Param::create( [
+            'id'=>'6d02896b-9931-4f34-8923-630c27f5f289',
+            'category'=>'service_category_group',
+            'param'=>'Layanan TIK',
         ]);
     }
 }

@@ -15,393 +15,281 @@ class ServiceCategorySeeder extends Seeder
      */
     public function run()
     {
-        $C1 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => '9f1cee53-0a03-4f3a-be7f-7f9764f08305',
             'category' => 'Permohonan Email',
-            'alias' => 'C1'
+            'alias' => 'C1',
+            'group_id' => '6d02896b-9931-4f34-8923-630c27f5f289',
+            'order' => 1,
+            
         ]);
+
         ServiceCategoryStep::create([
-            'service_category_id' => $C1->id,
-            'name' => 'Upload Surat Permohonan',
+            'service_category_id' => '9f1cee53-0a03-4f3a-be7f-7f9764f08305',
+            'name' => 'Disposisi Kabag',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C1->id,
-            'name' => 'Disposisi Kabag',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C1->id,
-            'name' => 'Verifikasi Permohonan',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C1->id,
+            'service_category_id' => '9f1cee53-0a03-4f3a-be7f-7f9764f08305',
             'name' => 'Pembuatan Alamat Email',
-            'order' => 4
+            'order' => 2
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C1->id,
+            'service_category_id' => '9f1cee53-0a03-4f3a-be7f-7f9764f08305',
             'name' => 'Penyampaian',
-            'order' => 5
+            'order' => 3
         ]);
 
-        $C2 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => 'dd0b3bda-8a6d-441d-a61d-286d9c395d71',
             'category' => 'Layanan Zoom Meeting',
-            'alias' => 'C2'
+            'alias' => 'C2',
+            'group_id' => '6d02896b-9931-4f34-8923-630c27f5f289',
+            'order' => 2,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C2->id,
-            'name' => 'Input Usulan',
+            'service_category_id' => 'dd0b3bda-8a6d-441d-a61d-286d9c395d71',
+            'name' => 'Link Zoom & Open Meeting',
             'order' => 1
         ]);
 
-        ServiceCategoryStep::create([
-            'service_category_id' => $C2->id,
-            'name' => 'Schedule Meeting',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C2->id,
-            'name' => 'Penyampaian Link',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C2->id,
-            'name' => 'Open Meeting',
-            'order' => 4
-        ]);
-
-        $C3 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => '3dced15b-3c7c-4531-9fa3-e41dac03bd73',
             'category' => 'Layanan Sertifikat Webinar/Diklat (e-sertifikat)',
-            'alias' => 'C3'
+            'alias' => 'C3',
+            'group_id' => '6d02896b-9931-4f34-8923-630c27f5f289',
+            'order' => 3,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C3->id,
-            'name' => 'Upload Flayer',
+            'service_category_id' => '3dced15b-3c7c-4531-9fa3-e41dac03bd73',
+            'name' => 'Penyampaian Informasi dan Kode Kelas',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C3->id,
-            'name' => 'Pembuatan Kode Kelas',
+            'service_category_id' => '3dced15b-3c7c-4531-9fa3-e41dac03bd73',
+            'name' => 'Publish',
             'order' => 2
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C3->id,
-            'name' => 'Penyampaian Kode Kelas',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C3->id,
-            'name' => 'Publish',
-            'order' => 4
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C3->id,
+            'service_category_id' => '3dced15b-3c7c-4531-9fa3-e41dac03bd73',
             'name' => 'Unduh Sertifikat',
-            'order' => 5
+            'order' => 4
         ]);
 
-        $C4 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => 'aba52261-bedc-4bf6-85f5-c72cd0489eab',
             'category' => 'Fasilitas E-learning',
-            'alias' => 'C4'
+            'alias' => 'C4',
+            'group_id' => '6d02896b-9931-4f34-8923-630c27f5f289',
+            'order' => 4,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C4->id,
-            'name' => 'Upload Flayer',
+            'service_category_id' => 'aba52261-bedc-4bf6-85f5-c72cd0489eab',
+            'name' => 'Create Informasi Kelas Online',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C4->id,
-            'name' => 'Create Kelas Online',
+            'service_category_id' => 'aba52261-bedc-4bf6-85f5-c72cd0489eab',
+            'name' => 'Publish',
             'order' => 2
         ]);
 
-        ServiceCategoryStep::create([
-            'service_category_id' => $C4->id,
-            'name' => 'Publish',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C4->id,
-            'name' => 'Pelaksanaan E-learning',
-            'order' => 4
-        ]);
-
-        $C5 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => 'c805de0a-dfa9-4533-ad14-59cfd938a47e',
             'category' => 'Pengelola Website',
-            'alias' => 'C5'
+            'alias' => 'C5',
+            'group_id' => '2b9f8c25-9710-460d-a771-4e5b3b956848',
+            'order' => 5,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C5->id,
-            'name' => 'Upload Berita/Data/Informasi/narasi',
+            'service_category_id' => 'c805de0a-dfa9-4533-ad14-59cfd938a47e',
+            'name' => 'Konten Berita/Informasi/Narasi',
             'order' => 1
         ]);
 
-        ServiceCategoryStep::create([
-            'service_category_id' => $C5->id,
-            'name' => 'Create Berita/Informasi/Narasi',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C5->id,
-            'name' => 'Publish',
-            'order' => 3
-        ]);
-
-        $C6 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => '3604ae76-1932-4ef1-b13d-9a960b96fbf6',
             'category' => 'Usulan Cetak Sertifikat NIK',
-            'alias' => 'C6'
+            'alias' => 'C6',
+            'group_id' => '6d02896b-9931-4f34-8923-630c27f5f289',
+            'order' => 6,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C6->id,
-            'name' => 'Agenda Surat',
+            'service_category_id' => '3604ae76-1932-4ef1-b13d-9a960b96fbf6',
+            'name' => 'Disposisi Kabag',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C6->id,
-            'name' => 'Disposisi Kabag',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C6->id,
-            'name' => 'Scan Formulir',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C6->id,
-            'name' => 'Verifikasi data',
+            'service_category_id' => '3604ae76-1932-4ef1-b13d-9a960b96fbf6',
+            'name' => 'Informasi Disetujui/Ditolak',
             'order' => 4
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C6->id,
-            'name' => 'Disetujui',
-            'order' => 5
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C6->id,
+            'service_category_id' => '3604ae76-1932-4ef1-b13d-9a960b96fbf6',
             'name' => 'Cetak Sertifikat',
-            'order' => 6
-        ]);
-
-        $C7 = ServiceCategory::create([
-            'category' => 'Layanan Domain Hosting',
-            'alias' => 'C7'
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C7->id,
-            'name' => 'Upload Surat Permohonan',
-            'order' => 1 
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C7->id,
-            'name' => 'Disposisi Kabag',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C7->id,
-            'name' => 'Verifikasi Permohonan',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C7->id,
-            'name' => 'Pembuatan Hosting Domain',
-            'order' => 4
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C7->id,
-            'name' => 'Penyampaian',
             'order' => 5
         ]);
 
-        $C8 = ServiceCategory::create([
-            'category' => 'Pengelola Server Kementerian KUMKM',
-            'alias' => 'C8'
+        ServiceCategory::create([
+            'id' => 'e2d42bfd-3b86-4b7f-8d16-26c5c229c744',
+            'category' => 'Layanan Domain dan Hosting',
+            'alias' => 'C7',
+            'group_id' => '5f47ba70-563c-4a69-b520-9175095249db',
+            'order' => 7,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C8->id,
-            'name' => 'Upload Surat Permohonan',
+            'service_category_id' => 'e2d42bfd-3b86-4b7f-8d16-26c5c229c744',
+            'name' => 'Disposisi Kabag',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C8->id,
-            'name' => 'Disposisi Kabag',
+            'service_category_id' => 'e2d42bfd-3b86-4b7f-8d16-26c5c229c744',
+            'name' => 'Pembuatan Domain dan Hosting',
             'order' => 2
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C8->id,
-            'name' => 'Verifikasi Permohonan',
+            'service_category_id' => 'e2d42bfd-3b86-4b7f-8d16-26c5c229c744',
+            'name' => 'Penyampaian',
             'order' => 3
         ]);
 
-        ServiceCategoryStep::create([
-            'service_category_id' => $C8->id,
-            'name' => 'Pengelolaan',
-            'order' => 4
-        ]);
-
-        $C9 = ServiceCategory::create([
-            'category' => 'Cloud File Sharing',
-            'alias' => 'C9'
+        ServiceCategory::create([
+            'id' => 'bd9d2f76-4407-49fe-ba08-574eb11ca7cf',
+            'category' => 'Layanan Virtual Server',
+            'alias' => 'C8',
+            'group_id' => '5f47ba70-563c-4a69-b520-9175095249db',
+            'order' => 8,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C9->id,
-            'name' => 'Upload Surat Permohonan',
+            'service_category_id' => 'bd9d2f76-4407-49fe-ba08-574eb11ca7cf',
+            'name' => 'Disposisi Kabag',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C9->id,
+            'service_category_id' => 'bd9d2f76-4407-49fe-ba08-574eb11ca7cf',
+            'name' => 'Informasi Virtual Server dan Pengelolaan',
+            'order' => 2
+        ]);
+
+        ServiceCategory::create([
+            'id' => '7e87f0ad-f88f-4f5c-a263-10ed133e65f1',
+            'category' => 'Layanan File Sharing',
+            'alias' => 'C9',
+            'group_id' => '5f47ba70-563c-4a69-b520-9175095249db',
+            'order' => 9,
+        ]);
+
+        ServiceCategoryStep::create([
+            'service_category_id' => '7e87f0ad-f88f-4f5c-a263-10ed133e65f1',
             'name' => 'Disposisi Kabag',
+            'order' => 1
+        ]);
+
+        ServiceCategoryStep::create([
+            'service_category_id' => '7e87f0ad-f88f-4f5c-a263-10ed133e65f1',
+            'name' => 'Pembuatan File Sharing',
             'order' => 2
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C9->id,
-            'name' => 'Verifikasi Permohonan',
+            'service_category_id' => '7e87f0ad-f88f-4f5c-a263-10ed133e65f1',
+            'name' => 'Penyampaian',
             'order' => 3
         ]);
 
-        ServiceCategoryStep::create([
-            'service_category_id' => $C9->id,
-            'name' => 'Pembuatan Cloud File Sharing',
-            'order' => 4
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C9->id,
-            'name' => 'Penyampaian',
-            'order' => 5
-        ]);
-
-        $C10 = ServiceCategory::create([
+        ServiceCategory::create([
+            'id' => '916fcde8-e831-478d-9a07-d55f5d2b0f48',
             'category' => 'Layanan Integrasi Sistem Informasi (Internal-External)',
-            'alias' => 'C10'
+            'alias' => 'C10',
+            'group_id' => '2b9f8c25-9710-460d-a771-4e5b3b956848',
+            'order' => 10,
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C10->id,
-            'name' => 'Upload Surat Permohonan',
+            'service_category_id' => '916fcde8-e831-478d-9a07-d55f5d2b0f48',
+            'name' => 'Disposisi Kabag',
             'order' => 1
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C10->id,
-            'name' => 'Disposisi Kabag',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C10->id,
+            'service_category_id' => '916fcde8-e831-478d-9a07-d55f5d2b0f48',
             'name' => 'Agenda Meeting',
-            'order' => 3
+            'order' => 2
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C10->id,
-            'name' => 'Pertukaran Struktur Data',
-            'order' => 4
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C10->id,
+            'service_category_id' => '916fcde8-e831-478d-9a07-d55f5d2b0f48',
             'name' => 'Analisa Struktur Data',
-            'order' => 5
+            'order' => 3
         ]);
 
         ServiceCategoryStep::create([
-            'service_category_id' => $C10->id,
+            'service_category_id' => '916fcde8-e831-478d-9a07-d55f5d2b0f48',
             'name' => 'Integrasi',
-            'order' => 6
-        ]);
-
-        $C11 = ServiceCategory::create([
-            'category' => 'Layanan Jaringan Komputer dan Komunikasi Data',
-            'alias' => 'C11'
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C11->id,
-            'name' => 'Penyampaian Keluhan',
-            'order' => 1
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C11->id,
-            'name' => 'Penugasan Teknis',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C11->id,
-            'name' => 'Proses Eksekusi',
-            'order' => 3
-        ]);
-
-        $C12 = ServiceCategory::create([
-            'category' => 'Layanan Pemeliharaan Sistem Informasi Kementerian',
-            'alias' => 'C12'
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C12->id,
-            'name' => 'Upload Surat Permohonan',
-            'order' => 1
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C12->id,
-            'name' => 'Disposisi Kabag',
-            'order' => 2
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C12->id,
-            'name' => 'Verifikasi Permohonan',
-            'order' => 3
-        ]);
-
-        ServiceCategoryStep::create([
-            'service_category_id' => $C12->id,
-            'name' => 'Proses Integrasi',
             'order' => 4
         ]);
 
+        ServiceCategory::create([
+            'id' => '31ca6873-d375-4b35-a2f6-28ee8b98338f',
+            'category' => 'Layanan Jaringan, Komputer dan Komunikasi Data',
+            'alias' => 'C11',
+            'group_id' => '61b19685-b303-4b14-9341-a2e6776073df',
+            'order' => 11,
+        ]);
+
         ServiceCategoryStep::create([
-            'service_category_id' => $C12->id,
+            'service_category_id' => '31ca6873-d375-4b35-a2f6-28ee8b98338f',
+            'name' => 'Penugasan Teknis/ PIC',
+            'order' => 1
+        ]);
+
+        ServiceCategoryStep::create([
+            'service_category_id' => '31ca6873-d375-4b35-a2f6-28ee8b98338f',
+            'name' => 'Proses Eksekusi dan Bukti',
+            'order' => 2
+        ]);
+
+        ServiceCategory::create([
+            'id' => '82bfed20-619a-4b1c-8831-cd587d3b7d26',
+            'category' => 'Layanan Pemeliharaan Sistem Informasi Kementerian',
+            'alias' => 'C12',
+            'group_id' => '2b9f8c25-9710-460d-a771-4e5b3b956848',
+            'order' => 12,
+        ]);
+
+        ServiceCategoryStep::create([
+            'service_category_id' => '82bfed20-619a-4b1c-8831-cd587d3b7d26',
+            'name' => 'Disposisi Kabag',
+            'order' => 1
+        ]);
+
+        ServiceCategoryStep::create([
+            'service_category_id' => '82bfed20-619a-4b1c-8831-cd587d3b7d26',
+            'name' => 'Proses Integrasi',
+            'order' => 2
+        ]);
+
+        ServiceCategoryStep::create([
+            'service_category_id' => '82bfed20-619a-4b1c-8831-cd587d3b7d26',
             'name' => 'Penyampaian',
-            'order' => 5
+            'order' => 3
         ]);
     }
 }
