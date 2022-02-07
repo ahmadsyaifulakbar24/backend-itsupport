@@ -21,7 +21,7 @@ class HelpdeskCreated implements ShouldBroadcastNow
      * @return void
      */
 
-    protected $helpdesk;
+    public $helpdesk;
     public function __construct($helpdesk)
     {
         $this->helpdesk = $helpdesk;
@@ -34,7 +34,7 @@ class HelpdeskCreated implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel($this->helpdesk);
+        return new Channel("helpdesk");
         // return new PrivateChannel('channel-name');
     }
 }
