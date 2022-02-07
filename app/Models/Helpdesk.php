@@ -23,7 +23,6 @@ class Helpdesk extends Model
         'integration_to',
         'from_date',
         'till_date',
-        'execution_time',
         'participant_capacity',
         'signature',
         'zoom_option',

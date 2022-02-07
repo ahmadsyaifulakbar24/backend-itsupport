@@ -24,7 +24,6 @@ class CreateHelpdesksTable extends Migration
             $table->string('integration_to')->nullable();
             $table->dateTime('from_date')->nullable();
             $table->dateTime('till_date')->nullable();
-            $table->time('execution_time')->nullable();
             $table->integer('participant_capacity')->nullable();
             $table->string('signature')->nullable();
             $table->boolean('zoom_option')->nullable();

@@ -55,7 +55,6 @@ class CreateHelpdeskController extends Controller
                 'title' => ['required', 'string'],
                 'from_date' => ['required', 'date_format:Y/m/d H:i:s'],
                 'till_date' => ['required', 'date_format:Y/m/d H:i:s'],
-                'execution_time' => ['required', 'date_format:H:i'],
                 'participant_capacity' => ['required', 'numeric'],
                 'description' => ['required', 'string'],
             ]);
@@ -63,7 +62,6 @@ class CreateHelpdeskController extends Controller
             $input['title'] = $request->title;
             $input['from_date'] = $request->from_date;
             $input['till_date'] = $request->till_date;
-            $input['execution_time'] = $request->execution_time;
             $input['participant_capacity'] = $request->participant_capacity;
             $input['description'] = $request->description;
             return $this->create($input, $service_category->id);
