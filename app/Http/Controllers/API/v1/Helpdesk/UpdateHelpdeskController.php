@@ -43,7 +43,7 @@ class UpdateHelpdeskController extends Controller
                 'title' => ['required', 'string'],
                 'from_date' => ['required', 'date_format:Y/m/d H:i:s'],
                 'till_date' => ['required', 'date_format:Y/m/d H:i:s'],
-                'participant_capacity' => ['required', 'numeric'],
+                'participant_capacity' => ['required', 'string'],
                 'description' => ['required', 'string'],
             ]);
 

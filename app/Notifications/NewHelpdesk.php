@@ -2,12 +2,14 @@
 
 namespace App\Notifications;
 
+use App\Models\Helpdesk;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewHistory extends Notification
+class NewHelpdesk extends Notification
 {
     use Queueable;
 
@@ -16,9 +18,11 @@ class NewHistory extends Notification
      *
      * @return void
      */
-    public function __construct()
+    protected $helpdesk, $user;
+    public function __construct(Helpdesk $helpdesk, User $user)
     {
-        //
+        $this->helpdesk = $helpdesk;
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +33,7 @@ class NewHistory extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -55,7 +59,11 @@ class NewHistory extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name
+            ],
+            'helpdesk' => $this->helpdesk->title
         ];
     }
 }
