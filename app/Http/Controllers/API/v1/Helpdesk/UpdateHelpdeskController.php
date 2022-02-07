@@ -212,7 +212,7 @@ class UpdateHelpdeskController extends Controller
             $input['file_sharing_type'] = $request->file_sharing_type;
             $input['needs'] = $request->needs;
             $input['size'] = $request->size;
-            ($request->file_sharing_type == 'cloud') ? $input['total_user'] = $request->total_user : $input['email_admin'] = $request->email_admin;
+            ($request->file_sharing_type == 'local') ? $input['total_user'] = $request->total_user : $input['email_admin'] = $request->email_admin;
             return $this->update($helpdesk, $input);
         } else if($sc_id == 'C10') { 
             $request->validate([

@@ -238,7 +238,7 @@ class CreateHelpdeskController extends Controller
             $input['file_sharing_type'] = $request->file_sharing_type;
             $input['needs'] = $request->needs;
             $input['size'] = $request->size;
-            ($request->file_sharing_type == 'cloud') ? $input['total_user'] = $request->total_user : $input['email_admin'] = $request->email_admin;
+            ($request->file_sharing_type == 'local') ? $input['total_user'] = $request->total_user : $input['email_admin'] = $request->email_admin;
             return $this->createFile($input, $request->latter, 'latter', $service_category->id);
 
         } else if($sc_id == 'C10') {
