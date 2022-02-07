@@ -289,7 +289,6 @@ class CreateHelpdeskController extends Controller
 
     public function createFile($input, $array_file, $file_type, $service_category_id, $alias = null)
     {
-        return $input;
         foreach($array_file  as $file_input) {
             $path = FileHelpers::upload_file('helpdesk', $file_input);
             $file_name = $file_input->getClientOriginalName();
