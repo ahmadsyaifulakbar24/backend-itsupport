@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class UpdateHelpdeskStepController extends Controller
 {
-    public function __invoke(Request $request)
+    public function update(Request $request)
     {
         $request->validate([
             'id' => ['required', 'exists:helpdesk_steps,id'],
@@ -32,5 +32,19 @@ class UpdateHelpdeskStepController extends Controller
         $helpdesk_step->history()->create($historyInput);
 
         return ResponseFormatter::success(new HelpdeskStepResource($helpdesk_step), 'update helpdesk step success');
+    }
+
+    public function status(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'exists:helpdesk_steps,id'],
+            'status' => ['required', 'in:process,finish'],
+        ]);
+        $helpdesk_step = HelpdeskStep::find($request->id);
+        $helpdesk_step->update([
+            'status' => $request->status,
+        ]);
+
+        return ResponseFormatter::success(new HelpdeskStepResource($helpdesk_step), 'update status helpdesk step success');
     }
 }

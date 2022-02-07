@@ -102,7 +102,8 @@ Route::prefix('v1')->group(function() {
 
         Route::prefix('/helpdesk_step')->group(function () {
             Route::get('/', [GetHelpdeskStepController::class, 'get']);
-            Route::patch('/', UpdateHelpdeskStepController::class);
+            Route::patch('/', [UpdateHelpdeskStepController::class, 'update']);
+            Route::patch('/status', [UpdateHelpdeskStepController::class, 'status']);
             Route::post('/file/create', [FileHelpdeskStepController::class, 'create']); 
         });
 
