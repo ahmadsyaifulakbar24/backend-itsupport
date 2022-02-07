@@ -80,7 +80,7 @@ class ParamSeeder extends Seeder
         Param::create( [
             'id'=>'2368c775-d8cb-43b1-ba11-eb9c70825dec',
             'category'=>'update_type',
-            'param'=>'Warta KUKM',
+            'param'=>'Warta KUMKM',
         ]);
                     
         Param::create( [

@@ -104,7 +104,7 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategory::create([
             'id' => 'c805de0a-dfa9-4533-ad14-59cfd938a47e',
-            'category' => 'Pengelola Website',
+            'category' => 'Pengelolaan Website',
             'alias' => 'C5',
             'group_id' => '2b9f8c25-9710-460d-a771-4e5b3b956848',
             'order' => 5,
@@ -133,13 +133,13 @@ class ServiceCategorySeeder extends Seeder
         ServiceCategoryStep::create([
             'service_category_id' => '3604ae76-1932-4ef1-b13d-9a960b96fbf6',
             'name' => 'Informasi Disetujui/Ditolak',
-            'order' => 4
+            'order' => 2
         ]);
 
         ServiceCategoryStep::create([
             'service_category_id' => '3604ae76-1932-4ef1-b13d-9a960b96fbf6',
             'name' => 'Cetak Sertifikat',
-            'order' => 5
+            'order' => 3
         ]);
 
         ServiceCategory::create([

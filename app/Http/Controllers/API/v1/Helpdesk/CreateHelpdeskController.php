@@ -146,13 +146,13 @@ class CreateHelpdeskController extends Controller
                 'title' => ['required', 'string'],
                 'koperasi_name' => ['required', 'string'],
                 'nik_koperasi' => ['required', 'string'],
-                'latter' => ['required', 'array'],
-                'latter.*' => ['required', 'file']
+                'document' => ['required', 'array'],
+                'document.*' => ['required', 'file']
             ]);
             $input['title'] = $request->title;
             $input['koperasi_name'] = $request->koperasi_name;
             $input['nik_koperasi'] = $request->nik_koperasi;
-            return $this->createFile($input, $request->latter, 'latter', $service_category->id);
+            return $this->createFile($input, $request->latter, 'document', $service_category->id);
 
         } else if($sc_id == 'C7') {
             $request->validate([
