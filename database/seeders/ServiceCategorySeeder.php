@@ -79,7 +79,7 @@ class ServiceCategorySeeder extends Seeder
         ServiceCategoryStep::create([
             'service_category_id' => '3dced15b-3c7c-4531-9fa3-e41dac03bd73',
             'name' => 'Unduh Sertifikat',
-            'order' => 4
+            'order' => 3
         ]);
 
         ServiceCategory::create([

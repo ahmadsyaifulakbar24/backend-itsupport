@@ -99,7 +99,9 @@ class UpdateHelpdeskController extends Controller
             $input['title'] = $request->title;
             $input['from_date'] = $request->from_date;
             $input['till_date'] = $request->till_date;
+            $input['zoom_option'] = $request->zoom_option;
             ($request->zoom_option == 1) ? $input['participant_capacity'] = $request->participant_capacity : $input['zoom_link'] = $request->zoom_link;
+            $input['presence'] = $request->presence;
             ($request->presence == 1) && $input['signature'] = $request->till_date;
             $input['class_type_id'] = $request->class_type_id;
             return $this->update($helpdesk, $input);
