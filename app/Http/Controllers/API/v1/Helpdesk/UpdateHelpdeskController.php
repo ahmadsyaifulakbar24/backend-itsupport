@@ -197,6 +197,7 @@ class UpdateHelpdeskController extends Controller
             $request->validate([
                 'title' => ['required', 'string'],
                 'file_sharing_type' => ['required', 'in:cloud,local'],
+                'needs' => ['required', 'in:Unit Kerja,Personal'],
                 'size' => ['required', 'string'],
                 'total_user' => [
                     Rule::requiredIf($request->file_sharing_type == 'cloud'),
@@ -209,6 +210,7 @@ class UpdateHelpdeskController extends Controller
             ]);
             $input['title'] = $request->title;
             $input['file_sharing_type'] = $request->file_sharing_type;
+            $input['needs'] = $request->needs;
             $input['size'] = $request->size;
             ($request->file_sharing_type == 'cloud') ? $input['total_user'] = $request->total_user : $input['email_admin'] = $request->email_admin;
             return $this->update($helpdesk, $input);
