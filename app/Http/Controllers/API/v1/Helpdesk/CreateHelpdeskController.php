@@ -41,8 +41,8 @@ class CreateHelpdeskController extends Controller
                 ],
                 'email' => ['required', 'array'],
                 'email.*.email_name' => ['required', 'string'],
-                'approval_document' => ['required', 'array'],
-                'approval_document.*' => ['required', 'file']
+                'approval_document' => ['nullable', 'array'],
+                'approval_document.*' => ['nullable', 'file']
             ]);
 
             $input['title'] = $request->title;
@@ -274,12 +274,12 @@ class CreateHelpdeskController extends Controller
         } else if($sc_id == 'C12') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'aplication_name' => ['required', 'string'],
+                'application_name' => ['required', 'string'],
                 'latter' => ['required', 'array'],
                 'latter.*' => ['required', 'file']
             ]);
             $input['title'] = $request->title;
-            $input['aplication_name'] = $request->aplication_name;
+            $input['application_name'] = $request->application_name;
             return $this->createFile($input, $request->latter, 'latter', $service_category->id);
         }
     }

@@ -249,10 +249,10 @@ class UpdateHelpdeskController extends Controller
         } else if($sc_id == 'C12') { 
             $request->validate([
                 'title' => ['required', 'string'],
-                'aplication_name' => ['required', 'string'],
+                'application_name' => ['required', 'string'],
             ]);
             $input['title'] = $request->title;
-            $input['aplication_name'] = $request->aplication_name;
+            $input['application_name'] = $request->application_name;
             return $this->update($helpdesk, $input);
         }
     }
