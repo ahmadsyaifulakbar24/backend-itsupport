@@ -48,7 +48,8 @@ class CreateHelpdeskController extends Controller
             $input['title'] = $request->title;
             $input['email_type_id'] = $request->email_type_id;
             $input['email'] = $request->email;
-            return $this->createFile($input, $request->approval_document, 'approval_document', $service_category->id, 'C1');
+            $file = (!empty($request->approval_document) ? $request->approval_document : null);
+            return $this->createFile($input, $file, 'approval_document', $service_category->id, 'C1');
 
         } else if($sc_id == 'C2') {
             $request->validate([
@@ -286,14 +287,17 @@ class CreateHelpdeskController extends Controller
 
     public function createFile($input, $array_file, $file_type, $service_category_id, $alias = null)
     {
-        foreach($array_file  as $file_input) {
-            $path = FileHelpers::upload_file('helpdesk', $file_input);
-            $file_name = $file_input->getClientOriginalName();
-            $file['type'] = $file_type;
-            $file['file_name'] = $file_name;
-            $file['path'] = $path;
-
-            $new_files[] = $file;
+        $new_files = null;
+        if(!empty($array_file)) {
+            foreach($array_file  as $file_input) {
+                $path = FileHelpers::upload_file('helpdesk', $file_input);
+                $file_name = $file_input->getClientOriginalName();
+                $file['type'] = $file_type;
+                $file['file_name'] = $file_name;
+                $file['path'] = $path;
+    
+                $new_files[] = $file;
+            }
         }
         $steps = $this->service_category_step($service_category_id);
         
@@ -303,7 +307,9 @@ class CreateHelpdeskController extends Controller
                 $helpdesk->email_name()->createMany($input['email']);
             }
             $helpdesk->service_category_step()->sync($steps);
-            $helpdesk->file()->createMany($new_files);
+            if(!empty($new_files)) {
+                $helpdesk->file()->createMany($new_files);
+            } 
             return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'create helpdesk data success');
         });
         
