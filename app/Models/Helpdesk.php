@@ -47,7 +47,7 @@ class Helpdesk extends Model
         'total_user',
         'email_admin',
         'location',
-        'aplication_name',
+        'application_name',
         'description',
         'status'
     ];

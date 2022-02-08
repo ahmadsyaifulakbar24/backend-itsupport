@@ -48,7 +48,7 @@ class CreateHelpdesksTable extends Migration
             $table->string('total_user')->nullable();
             $table->string('email_admin')->nullable();
             $table->string('location')->nullable();
-            $table->string('aplication_name')->nullable();
+            $table->string('application_name')->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['pending', 'process', 'finish', 'reject']);
             $table->timestamps();
