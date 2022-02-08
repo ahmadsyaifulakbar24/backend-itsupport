@@ -45,6 +45,13 @@ class UpdateHelpdeskStepController extends Controller
             'status' => $request->status,
         ]);
 
+        $historyInput = [
+            'type' => 'helpdesk_step',
+            'action_by' => $request->user()->id,
+            'history' => 'update helpdesk step status '.$request->status,
+        ];
+        $helpdesk_step->history()->create($historyInput);
+
         return ResponseFormatter::success(new HelpdeskStepResource($helpdesk_step), 'update status helpdesk step success');
     }
 }
