@@ -194,8 +194,15 @@ class CreateHelpdeskController extends Controller
         } else if($sc_id == 'C8') {
             $request->validate([
                 'title' => ['required', 'string'],
-                'domain_name' => ['required', 'string'],
-                'ip_address' => ['required', 'string'],
+                'need_domain' => ['required', 'boolean'],
+                'domain_name' => [
+                    Rule::requiredIf($request->need_domain == 1), 
+                    'string'
+                ],
+                'ip_address' => [
+                    Rule::requiredIf($request->need_domain == 1), 
+                    'string'
+                ],
                 'ram' => ['required', 'string'],
                 'size' => ['required', 'string'],
                 'os' => ['required', 'string'],
@@ -206,8 +213,11 @@ class CreateHelpdeskController extends Controller
                 'latter.*' => ['required', 'file']
             ]);
             $input['title'] = $request->title;
-            $input['domain_name'] = $request->domain_name;
-            $input['ip_address'] = $request->ip_address;
+            $input['need_domain'] = $request->need_domain;
+            if($request->need_domain == 1) {
+                $input['domain_name'] = $request->domain_name;
+                $input['ip_address'] = $request->ip_address;
+            }
             $input['ram'] = $request->ram;
             $input['size'] = $request->size;
             $input['os'] = $request->os;

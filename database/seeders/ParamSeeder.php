@@ -68,7 +68,7 @@ class ParamSeeder extends Seeder
             'id'=>'0e035bf5-6859-4c1c-b56a-7440e3a08c75',
             'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon2',
-            'param'=>'Biro Managemen Kinerja, Organisasi, dan SDM Aparatur',
+            'param'=>'Biro Manajemen Kinerja, Organisasi, dan SDM Aparatur',
         ]);
                     
         Param::create( [
@@ -309,6 +309,13 @@ class ParamSeeder extends Seeder
             'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
             'category'=>'eselon2',
             'param'=>'Biro Hukum dan Kerja Sama',
+        ]);
+
+        Param::create( [
+            'id'=>'9bbaaa86-d936-4caf-a0bd-1737025d0f2c',
+            'parent_id'=>'9913fd9b-540e-49a1-9787-e0f50e304f54',
+            'category'=>'eselon2',
+            'param'=>'Inspektorat',
         ]);
                     
         Param::create( [

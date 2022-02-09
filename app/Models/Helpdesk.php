@@ -33,6 +33,7 @@ class Helpdesk extends Model
         'complaint_type_id',
         'koperasi_name',
         'nik_koperasi',
+        'need_domain',
         'domain_name',
         'ip_address',
         'need_hosting',

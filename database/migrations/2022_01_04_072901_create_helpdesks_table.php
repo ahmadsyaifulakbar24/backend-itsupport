@@ -34,6 +34,7 @@ class CreateHelpdesksTable extends Migration
             $table->foreignUuid('complaint_type_id')->nullable()->constrained('params')->onDelete('cascade')->onUpdate('cascade');
             $table->string('koperasi_name')->nullable();
             $table->string('nik_koperasi')->nullable();
+            $table->boolean('need_domain')->nullable();
             $table->string('domain_name')->nullable();
             $table->string('ip_address')->nullable(); 
             $table->boolean('need_hosting')->nullable();

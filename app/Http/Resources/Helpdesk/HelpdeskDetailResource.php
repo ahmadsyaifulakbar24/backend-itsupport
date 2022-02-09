@@ -49,6 +49,7 @@ class HelpdeskDetailResource extends JsonResource
             'complaint_type_id' => $this->complaint_type,
             'koperasi_name' => $this->koperasi_name,
             'nik_koperasi' => $this->nik_koperasi,
+            'need_domain' => $this->need_domain,
             'domain_name' => $this->domain_name,
             'ip_address' => $this->ip_address,
             'description' => $this->description,
