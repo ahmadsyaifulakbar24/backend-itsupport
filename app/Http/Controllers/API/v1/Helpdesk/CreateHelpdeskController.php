@@ -335,7 +335,7 @@ class CreateHelpdeskController extends Controller
             $steps[] = [
                 'id' => Str::uuid()->toString(),
                 'service_category_step_id' => $step->id,
-                'status' => 'open',
+                'status' => 'process',
                 'created_at' => now(),
                 'updated_at' => now()
             ];
