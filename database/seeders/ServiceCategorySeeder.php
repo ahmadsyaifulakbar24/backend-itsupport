@@ -84,7 +84,7 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategory::create([
             'id' => 'aba52261-bedc-4bf6-85f5-c72cd0489eab',
-            'category' => 'Fasilitas E-learning',
+            'category' => 'Fasilitasi E-learning',
             'alias' => 'C4',
             'group_id' => '6d02896b-9931-4f34-8923-630c27f5f289',
             'order' => 4,
