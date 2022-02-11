@@ -248,7 +248,7 @@ class ServiceCategorySeeder extends Seeder
 
         ServiceCategory::create([
             'id' => '31ca6873-d375-4b35-a2f6-28ee8b98338f',
-            'category' => 'Layanan Jaringan, Komputer dan Komunikasi Data',
+            'category' => 'Layanan Jaringan, Komputer dan Internet',
             'alias' => 'C11',
             'group_id' => '61b19685-b303-4b14-9341-a2e6776073df',
             'order' => 11,
