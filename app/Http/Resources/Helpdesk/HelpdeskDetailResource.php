@@ -31,6 +31,7 @@ class HelpdeskDetailResource extends JsonResource
             'ticket_number' => $this->ticket_number,
             'service_category' => $this->service_category,
             'helpdesk_step' => HelpdeskStepResource::collection($this->helpdesk_step()->orderBy('order', 'asc')->get()),
+            'helpdesk_step_general_user' => HelpdeskStepResource::collection($this->helpdesk_step()->orderBy('order', 'desc')->limit(1)->get()),
             'title' => $this->title,
             'email_type' => new ParamResource($this->email_type),
             'email' => EmailNameResource::collection($this->email_name),
