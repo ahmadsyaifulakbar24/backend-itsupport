@@ -33,7 +33,8 @@ class HelpdeskDetailResource extends JsonResource
             'helpdesk_step' => HelpdeskStepResource::collection($this->helpdesk_step()->orderBy('order', 'asc')->get()),
             'helpdesk_step_general_user' => HelpdeskStepResource::collection($this->helpdesk_step()->orderBy('order', 'desc')->limit(1)->get()),
             'other_status' => [
-                'assigment_status' => ($this->helpdesk_assigment()->count() > 0) ? true : false
+                'assigment_status' => ($this->helpdesk_assigment()->count() > 0) ? true : false,
+                'assigment_status' => $this->helpdesk_assigment()->count()
             ],
             'title' => $this->title,
             'email_type' => new ParamResource($this->email_type),
