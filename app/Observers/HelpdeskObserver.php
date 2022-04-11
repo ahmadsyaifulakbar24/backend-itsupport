@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Events\HelpdeskCreated;
 use App\Models\Helpdesk;
 use App\Models\User;
 use App\Notifications\NewHelpdesk;
@@ -26,12 +25,10 @@ class HelpdeskObserver
     public function created(Helpdesk $helpdesk)
     {
         $created_by = $helpdesk->user;
-        // $users = User::where('role', 'admin')->get();
-        $users = User::all();
+        $users = User::where('role', 'admin')->get();
         foreach($users as $user) {
             $user->notify(new NewHelpdesk($helpdesk, $created_by, $user));
         }
-        HelpdeskCreated::dispatch('helpdesk test message');
     }
 
     /**

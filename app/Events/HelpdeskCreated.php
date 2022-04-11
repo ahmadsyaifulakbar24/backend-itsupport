@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class HelpdeskCreated implements ShouldBroadcastNow
+class HelpdeskCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -25,6 +25,7 @@ class HelpdeskCreated implements ShouldBroadcastNow
     public function __construct($helpdesk)
     {
         $this->helpdesk = $helpdesk;
+        $this->dontBroadcastToCurrentUser();
     }
 
     /**

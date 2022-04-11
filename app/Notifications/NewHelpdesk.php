@@ -6,6 +6,7 @@ use App\Models\Helpdesk;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -21,6 +22,8 @@ class NewHelpdesk extends Notification implements ShouldQueue
     public $helpdesk, $user, $user_to;
     public function __construct(Helpdesk $helpdesk, User $user, User $user_to)
     {
+        $this->afterCommit();
+        
         $this->helpdesk = $helpdesk;
         $this->user = $user;
         $this->user_to = $user_to;
@@ -35,7 +38,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         // return ['database', 'broadcast'];
-        return [CustomDatabaseChannel::class];
+        return [CustomDatabaseChannel::class, 'broadcast'];
     }
 
     /**
@@ -58,16 +61,6 @@ class NewHelpdesk extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    // public function toArray($notifiable)
-    // {
-    //     return [
-    //         'user' => [
-    //             'id' => $this->user->id,
-    //             'name' => $this->user->name
-    //         ],
-    //         'helpdesk' => $this->helpdesk->title
-    //     ];
-    // }
 
     public function toDatabase($notifiable)
     {
@@ -82,8 +75,28 @@ class NewHelpdesk extends Notification implements ShouldQueue
             ],
             'helpdesk' => [
                 'id' => $this->helpdesk->id,
-                'title' => $this->helpdesk->title
+                'title' => $this->helpdesk->title,
+                'type' => 'created'
             ]
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'user' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name
+            ],
+            'user_to' => [
+                'id' => $this->user_to->id,
+                'name' => $this->user_to->name
+            ],
+            'helpdesk' => [
+                'id' => $this->helpdesk->id,
+                'title' => $this->helpdesk->title,
+                'type' => 'created'
+            ]
+        ]);
     }
 }

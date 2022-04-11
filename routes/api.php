@@ -61,10 +61,6 @@ Route::prefix('v1')->group(function() {
     });
 
     Route::middleware('auth:api')->group(function() {
-        Route::get('/test', function() {
-            HelpdeskCreated::dispatch('helpdesk test message');
-        });
-        
         Route::get("/user-login", UserController::class);
         Route::delete("/logout", LogoutController::class);
 
