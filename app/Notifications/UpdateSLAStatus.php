@@ -37,7 +37,7 @@ class UpdateSLAStatus extends Notification
      */
     public function via($notifiable)
     {
-        return [CustomDatabaseChannel::class, 'broadcast'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -70,7 +70,7 @@ class UpdateSLAStatus extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'user' => [
+            'user_from' => [
                 'id' => $this->updated_by->id,
                 'name' => $this->updated_by->name
             ],
@@ -91,7 +91,7 @@ class UpdateSLAStatus extends Notification
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'user' => [
+            'user_from' => [
                 'id' => $this->updated_by->id,
                 'name' => $this->updated_by->name
             ],

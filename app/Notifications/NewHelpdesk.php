@@ -38,7 +38,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         // return ['database', 'broadcast'];
-        return [CustomDatabaseChannel::class, 'broadcast'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -65,7 +65,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'user' => [
+            'user_from' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name
             ],
@@ -85,7 +85,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'user' => [
+            'user_from' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name
             ],

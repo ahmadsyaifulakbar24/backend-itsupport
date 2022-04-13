@@ -38,7 +38,7 @@ class UpdateHelpdeskStatus extends Notification
      */
     public function via($notifiable)
     {
-        return [CustomDatabaseChannel::class, 'broadcast'];
+        return ['database', 'broadcast'];
 
     }
 
@@ -72,7 +72,7 @@ class UpdateHelpdeskStatus extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'user' => [
+            'user_from' => [
                 'id' => $this->update_by->id,
                 'name' => $this->update_by->name
             ],
@@ -92,7 +92,7 @@ class UpdateHelpdeskStatus extends Notification
 
     public function toBroadcast($notifiable) {
         return new BroadcastMessage([
-            'user' => [
+            'user_from' => [
                 'id' => $this->update_by->id,
                 'name' => $this->update_by->name
             ],
