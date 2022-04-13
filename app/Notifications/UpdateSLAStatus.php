@@ -80,7 +80,7 @@ class UpdateSLAStatus extends Notification
             ],
             'helpdesk_step' => [
                 'id' => $this->helpdesk_step->id,
-                'helpdesk_id' => $this->helpdesk_step->helpdesk->helpdesk_id,
+                'helpdesk_id' => $this->helpdesk_step->helpdesk->id,
                 'helpdesk_title' => $this->helpdesk_step->helpdesk->title,
                 'ticket_number' => $this->helpdesk_step->helpdesk->ticket_number,
             ],
