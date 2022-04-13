@@ -17,7 +17,7 @@ class GetHelpdeskController extends Controller
         $request->validate([
             'id' => ['nullable', 'exists:helpdesks,id'],
             'ticket_number' => ['nullable', 'exists:helpdesks,ticket_number'],
-            'assigment_id' => ['nullable', 'exists:helpdesk_assigments,user_id'],
+            'assigment_id' => ['nullable', 'exists:users,id'],
             'user_id' => ['nullable', 'exists:users,id'],
             'search' => ['nullable', 'string'],
             'limit' => ['nullable', 'numeric']
