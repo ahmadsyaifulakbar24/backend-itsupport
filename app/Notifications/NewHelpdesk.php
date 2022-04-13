@@ -98,7 +98,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
                 'helpdesk_title' => $this->helpdesk->title,
                 'ticket_number' => $this->helpdesk->ticket_number,
             ],
-            'notification_type' => 'created'
+            'notification_type' => 'create helpdesk'
         ]);
     }
 }
