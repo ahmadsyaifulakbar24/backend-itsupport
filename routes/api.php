@@ -30,6 +30,7 @@ use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\GetHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\HelpdeskStep\UpdateHelpdeskStepController;
 use App\Http\Controllers\API\v1\Helpdesk\UpdateHelpdeskController;
 use App\Http\Controllers\API\v1\History\HistoryController;
+use App\Http\Controllers\API\v1\Notification\NotificationController;
 use App\Http\Controllers\API\v1\Params\ParamsController;
 use App\Http\Controllers\API\v1\ServiceCategory\ServiceCategoryController;
 use App\Http\Controllers\API\v1\User\GetUserController;
@@ -166,6 +167,12 @@ Route::prefix('v1')->group(function() {
             Route::patch('/update_status', [UpdateMonitoringController::class, 'update_status']);
             Route::delete('/delete', [DeleteMonitoringController::class, 'delete']);
             Route::post('/upload_file', [CreateMonitoringController::class, 'upload_file']);
+        });
+
+        Route::prefix('notification')->group(function() {
+            Route::get('/get', [NotificationController::class, 'get']);
+            Route::patch('/mark_as_read', [NotificationController::class, 'mark_as_read']);
+            Route::delete('/delete', [NotificationController::class, 'delete']);
         });
     });
 });

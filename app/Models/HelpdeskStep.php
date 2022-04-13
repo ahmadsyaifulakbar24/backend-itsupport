@@ -28,6 +28,11 @@ class HelpdeskStep extends Model
         return Carbon::parse($date)->format('Y-m-d H:i:s');
     }
     
+    public function helpdesk()
+    {
+        return $this->belongsTo(Helpdesk::class, 'helpdesk_id');
+    }
+
     public function service_category_step()
     {
         return $this->belongsTo(ServiceCategoryStep::class, 'service_category_step_id')->orderBy('order', 'asc');

@@ -6,6 +6,8 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Helpdesk\HelpdeskResource;
 use App\Models\Helpdesk;
+use App\Models\User;
+use App\Notifications\UpdateHelpdeskStatus;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -279,6 +281,11 @@ class UpdateHelpdeskController extends Controller
             'status' => $request->status
         ]);
 
+        // sent notification
+        $updated_by = User::find($request->user()->id);
+        $user = User::find($helpdesk->user_id);
+        $user->notify(new UpdateHelpdeskStatus($helpdesk, $updated_by, $user));
+        
         return ResponseFormatter::success(new HelpdeskResource($helpdesk), 'update helpdesk status success');
     }
     

@@ -5,9 +5,10 @@ namespace App\Http\Controllers\API\v1\Helpdesk;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Helpdesk\HelpdeskAssigmentsResource;
-use App\Http\Resources\User\UserResource;
 use App\Models\Helpdesk;
 use App\Models\HelpdeskAssigment;
+use App\Models\User;
+use App\Notifications\NewHelpdeskAssignment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -39,6 +40,12 @@ class HelpdeskAssigmentController extends Controller
         $helpdesk = Helpdesk::find($request->id);
         $input = $request->all();
         $helpdesk_assigment = $helpdesk->helpdesk_assigment()->create($input);
+
+        // sent notification
+        $assignment_from = User::find($request->user()->id);
+        $user = User::find($request->user_id);
+        $user->notify(new NewHelpdeskAssignment($helpdesk_assigment, $assignment_from, $user));
+
         return ResponseFormatter::success(new HelpdeskAssigmentsResource($helpdesk_assigment), 'create helpdesk assigment data success');
     }
 

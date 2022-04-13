@@ -10,7 +10,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewHelpdesk extends Notification implements ShouldQueue
+class UpdateHelpdeskStatus extends Notification
 {
     use Queueable;
 
@@ -19,13 +19,14 @@ class NewHelpdesk extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public $helpdesk, $user, $user_to;
-    public function __construct(Helpdesk $helpdesk, User $user, User $user_to)
+
+    public $helpdesk, $updated_by, $user_to;
+    public function __construct(Helpdesk $helpdesk, User $updated_by, User $user_to)
     {
         $this->afterCommit();
-        
+
         $this->helpdesk = $helpdesk;
-        $this->user = $user;
+        $this->update_by = $updated_by;
         $this->user_to = $user_to;
     }
 
@@ -37,8 +38,8 @@ class NewHelpdesk extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        // return ['database', 'broadcast'];
         return [CustomDatabaseChannel::class, 'broadcast'];
+
     }
 
     /**
@@ -61,13 +62,19 @@ class NewHelpdesk extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
+    public function toArray($notifiable)
+    {
+        return [
+            //
+        ];
+    }
 
     public function toDatabase($notifiable)
     {
         return [
             'user' => [
-                'id' => $this->user->id,
-                'name' => $this->user->name
+                'id' => $this->update_by->id,
+                'name' => $this->update_by->name
             ],
             'user_to' => [
                 'id' => $this->user_to->id,
@@ -75,18 +82,18 @@ class NewHelpdesk extends Notification implements ShouldQueue
             ],
             'helpdesk' => [
                 'id' => $this->helpdesk->id,
+                'status' => $this->helpdesk->status,
                 'helpdesk_title' => $this->helpdesk->title,
             ],
-            'notification_type' => 'created'
+            'notification_type' => 'update helpdesk status'
         ];
     }
 
-    public function toBroadcast($notifiable)
-    {
+    public function toBroadcast($notifiable) {
         return new BroadcastMessage([
             'user' => [
-                'id' => $this->user->id,
-                'name' => $this->user->name
+                'id' => $this->update_by->id,
+                'name' => $this->update_by->name
             ],
             'user_to' => [
                 'id' => $this->user_to->id,
@@ -94,9 +101,10 @@ class NewHelpdesk extends Notification implements ShouldQueue
             ],
             'helpdesk' => [
                 'id' => $this->helpdesk->id,
+                'status' => $this->helpdesk->status,
                 'helpdesk_title' => $this->helpdesk->title,
             ],
-            'notification_type' => 'created'
+            'notification_type' => 'update helpdesk status'
         ]);
     }
 }
