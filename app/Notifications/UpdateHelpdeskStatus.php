@@ -84,6 +84,7 @@ class UpdateHelpdeskStatus extends Notification
                 'id' => $this->helpdesk->id,
                 'status' => $this->helpdesk->status,
                 'helpdesk_title' => $this->helpdesk->title,
+                'ticket_number' => $this->helpdesk->ticket_number,
             ],
             'notification_type' => 'update helpdesk status'
         ];
@@ -103,6 +104,7 @@ class UpdateHelpdeskStatus extends Notification
                 'id' => $this->helpdesk->id,
                 'status' => $this->helpdesk->status,
                 'helpdesk_title' => $this->helpdesk->title,
+                'ticket_number' => $this->helpdesk->ticket_number,
             ],
             'notification_type' => 'update helpdesk status'
         ]);

@@ -76,6 +76,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
             'helpdesk' => [
                 'id' => $this->helpdesk->id,
                 'helpdesk_title' => $this->helpdesk->title,
+                'ticket_number' => $this->helpdesk->ticket_number,
             ],
             'notification_type' => 'created'
         ];
@@ -95,6 +96,7 @@ class NewHelpdesk extends Notification implements ShouldQueue
             'helpdesk' => [
                 'id' => $this->helpdesk->id,
                 'helpdesk_title' => $this->helpdesk->title,
+                'ticket_number' => $this->helpdesk->ticket_number,
             ],
             'notification_type' => 'created'
         ]);

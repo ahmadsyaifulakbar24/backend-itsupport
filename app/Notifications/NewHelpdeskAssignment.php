@@ -82,6 +82,7 @@ class NewHelpdeskAssignment extends Notification
                 'id' => $this->helpdesk_assignment->id,
                 'helpdesk_id' => $this->helpdesk_assignment->helpdesk_id,
                 'helpdesk_title' => $this->helpdesk_assignment->helpdesk->title,
+                'ticket_number' => $this->helpdesk_assignment->helpdesk->ticket_number,
             ],
             'notification_type' => 'create helpdesk assignment'
         ];
@@ -102,6 +103,7 @@ class NewHelpdeskAssignment extends Notification
                 'id' => $this->helpdesk_assignment->id,
                 'helpdesk_id' => $this->helpdesk_assignment->helpdesk_id,
                 'helpdesk_title' => $this->helpdesk_assignment->helpdesk->title,
+                'ticket_number' => $this->helpdesk_assignment->helpdesk->ticket_number,
             ],
             'notification_type' => 'create helpdesk assignment'
         ]);

@@ -82,6 +82,7 @@ class UpdateSLAStatus extends Notification
                 'id' => $this->helpdesk_step->id,
                 'helpdesk_id' => $this->helpdesk_step->helpdesk->helpdesk_id,
                 'helpdesk_title' => $this->helpdesk_step->helpdesk->title,
+                'ticket_number' => $this->helpdesk_step->helpdesk->ticket_number,
             ],
             'notification_type' => 'update sla status'
         ];
@@ -104,6 +105,7 @@ class UpdateSLAStatus extends Notification
                 'name' => $this->helpdesk_step->service_category_step->name,
                 'helpdesk_id' => $this->helpdesk_step->helpdesk->id,
                 'helpdesk_title' => $this->helpdesk_step->helpdesk->title,
+                'ticket_number' => $this->helpdesk_step->helpdesk->ticket_number,
             ],
             'notification_type' => 'update sla status'
         ]);

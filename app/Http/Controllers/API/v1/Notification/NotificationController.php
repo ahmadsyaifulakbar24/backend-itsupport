@@ -13,7 +13,7 @@ class NotificationController extends Controller
     public function get(Request $request)
     {
         $user = User::find($request->user()->id);
-        $notification = $user->notifications()->whereNull('read_at');
+        $notification = $user->unreadNotifications();
         $result = [
             'notification' => HelpdeskNotificationResource::collection($notification->get()),
             'total' => $notification->count()
