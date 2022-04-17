@@ -49,7 +49,7 @@ class CreateViewTable extends Migration
                 a.param as eselon1,
                 COUNT(CASE WHEN b.eselon1_id IS NOT NULL THEN 1 END) as total
             FROM params AS a
-            LEFT JOIN users AS b ON b.eselon1_id = a.id
+            LEFT JOIN (SELECT * FROM users WHERE role = 'general') AS b ON b.eselon1_id = a.id
             WHERE a.category = 'eselon1'
             GROUP BY a.id
         ");
