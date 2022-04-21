@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\BudgedActivity;
 
+use App\Http\Resources\Client\ClientResource;
 use App\Http\Resources\Mak\MakResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,7 @@ class BudgedActivityResource extends JsonResource
             'id' => $this->category->id,
             'category' => $this->category->param,
         ];
-        $data['client_id'] = $this->client_id;
+        $data['client'] = new ClientResource($this->client);
 
         if($this->category->alias == 'kontraktual') {
             $data['mak'] = new MakResource($this->mak[0]);

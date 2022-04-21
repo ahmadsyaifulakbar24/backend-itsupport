@@ -44,6 +44,7 @@ class GetBudgedActivityController extends Controller
             $budged_activity->where('activity_name', 'like', '%'.$request->search.'%');
         }
 
-        return ResponseFormatter::success(BudgedActivityResource::collection($budged_activity->paginate($limit))->response()->getData(true), 'get budged activity data success');
+        $result = $budged_activity->orderBy('created_at', 'desc')->paginate($limit);
+        return ResponseFormatter::success(BudgedActivityResource::collection($result)->response()->getData(true), 'get budged activity data success');
     }
 }

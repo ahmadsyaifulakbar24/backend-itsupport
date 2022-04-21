@@ -29,4 +29,9 @@ class ViewBudgedActivityDetail extends Model
     {
         return $this->hasMany(Mak::class, 'budged_activity_id');
     }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
 }
