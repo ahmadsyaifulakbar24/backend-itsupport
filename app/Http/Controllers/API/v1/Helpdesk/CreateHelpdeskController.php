@@ -158,7 +158,7 @@ class CreateHelpdeskController extends Controller
                 'domain_name' => ['required', 'string'],
                 'need_hosting' => ['required', 'boolean'],
                 'ip_address' => [
-                    Rule::requiredIf($request->need_hosting == 1),
+                    Rule::requiredIf($request->need_hosting == 0),
                     'string'
                 ],
                 'ram' => [
