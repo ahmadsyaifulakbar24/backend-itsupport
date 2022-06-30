@@ -26,7 +26,7 @@ class AddCretedByToHelpdeskAssignmentTable extends Migration
     public function down()
     {
         Schema::table('helpdesk_assigments', function (Blueprint $table) {
-            $table->foreignUuid('created_by')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('created_by')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 }
