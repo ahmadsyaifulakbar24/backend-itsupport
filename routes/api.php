@@ -67,6 +67,7 @@ Route::prefix('v1')->group(function() {
 
         Route::prefix('/user')->group(function() {
             Route::get('/', [GetUserController::class, 'get']);
+            Route::get('/assignment', [GetUserController::class, 'assignment']);
             Route::patch('/update', [UpdateUserController::class, 'update']);
             Route::patch('/change_password', [UpdateUserController::class, 'change_password']);
         });

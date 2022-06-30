@@ -14,7 +14,8 @@ class HelpdeskAssigment extends Model
     protected $table = 'helpdesk_assigments';
     protected $fillable = [
         'helpdesk_id',
-        'user_id'
+        'created_by',
+        'user_id',
     ];
 
     public function getCreatedAtAttribute($date) {
@@ -32,5 +33,9 @@ class HelpdeskAssigment extends Model
     public function user ()
     {
         return $this->belongsTo(User::class,  'user_id');
+    }
+
+    public function user_created() {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

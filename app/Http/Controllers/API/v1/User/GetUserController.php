@@ -30,4 +30,10 @@ class GetUserController extends Controller
         }
         return ResponseFormatter::success(UserResource::collection($user->get()), $message);
     }
+
+    public function assignment()
+    {
+        $user = User::whereIn('role', ['it', 'kasubag'])->get();
+        return ResponseFormatter::success(UserResource::collection($user), 'get user data success');
+    }
 }

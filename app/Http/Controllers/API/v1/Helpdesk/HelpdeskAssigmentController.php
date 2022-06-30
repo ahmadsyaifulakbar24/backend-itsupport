@@ -39,6 +39,7 @@ class HelpdeskAssigmentController extends Controller
 
         $helpdesk = Helpdesk::find($request->id);
         $input = $request->all();
+        $input['created_by'] = $request->user()->id;
         $helpdesk_assigment = $helpdesk->helpdesk_assigment()->create($input);
 
         // sent notification
