@@ -16,6 +16,7 @@ class MakController extends Controller
     {
         $request->validate([
             'id' => ['nullable', 'exists:maks,id'],
+            'budged_activity_id' => ['nullable', 'exists:budged_activities,id'],
             'search' => ['nullable', 'string'],
             'limit' => ['nullable', 'integer']
         ]);
@@ -26,7 +27,12 @@ class MakController extends Controller
             return ResponseFormatter::success(new MakResource($mak), 'get mak data success');
         }
 
+        
         $mak = ViewMakDetail::query();
+        if($request->budged_activity_id) {
+            $mak->where('budged_activity_id', $request->budged_activity_id);
+        }
+
         if($request->search) {
             $mak->where('code_mak', 'like', '%'.$request->search.'%');
         }
