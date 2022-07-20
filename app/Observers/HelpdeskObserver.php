@@ -25,7 +25,7 @@ class HelpdeskObserver
     public function created(Helpdesk $helpdesk)
     {
         $created_by = $helpdesk->user;
-        $users = User::where('role', 'admin')->get();
+        $users = User::whereIn('role', ['admin', 'kasubag'])->get();
         foreach($users as $user) {
             $user->notify(new NewHelpdesk($helpdesk, $created_by, $user));
         }
