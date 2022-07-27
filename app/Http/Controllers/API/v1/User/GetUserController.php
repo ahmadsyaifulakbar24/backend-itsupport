@@ -8,6 +8,7 @@ use App\Http\Resources\User\UserDetailResouce;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GetUserController extends Controller
 {
@@ -15,8 +16,16 @@ class GetUserController extends Controller
     {
         $request->validate([
             'id' => ['nullable', 'exists:users,id'],
-            'role' => ['nullable', 'in:admin,general,it,statistic']
+            'role' => ['nullable', 'in:admin,general,it,statistic'],
+            'search' => ['nullable', 'string'],
+            'paginate' => ['nullable', 'in:0,1'],
+            'limit' => [
+                Rule::requiredIf($request->paginate == 1),
+                'integer'
+            ]
         ]);
+        $search = $request->search;
+        $limit = $request->input('limit', 10);
 
         $message = 'get user data success';
         iF($request->id) {
@@ -28,7 +37,21 @@ class GetUserController extends Controller
         if($request->role) {
             $user->where('role', $request->role);
         }
-        return ResponseFormatter::success(UserResource::collection($user->get()), $message);
+
+        if($search) {
+            $user->where(function($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->orWhere('phone_number', 'like', '%'.$search.'%');
+            });
+        }
+
+        if($request->paginate) {
+            $result = $user->paginate($limit);
+        } else {
+            $result = $user->get();
+        }
+        return ResponseFormatter::success(UserDetailResouce::collection($result), $message);
     }
 
     public function assignment(Request $request)
