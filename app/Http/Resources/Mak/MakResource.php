@@ -16,6 +16,14 @@ class MakResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'budged_activity' => [
+                'id' => $this->budged_activity->id,
+                'activity_name' => $this->budged_activity->activity_name,
+                'client' => [
+                    'id' => $this->budged_activity->client->id,
+                    'name' => $this->budged_activity->client->name,
+                ],
+            ],
             'code_mak' => $this->code_mak,
             'budged' => $this->budged,
             'status' => $this->status,

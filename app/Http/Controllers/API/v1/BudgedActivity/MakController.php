@@ -37,7 +37,7 @@ class MakController extends Controller
             $mak->where('code_mak', 'like', '%'.$request->search.'%');
         }
 
-        return ResponseFormatter::success(MakResource::collection($mak->paginate($limit))->response()->getData(true), 'get mak data success');
+        return ResponseFormatter::success(MakResource::collection($mak->orderBy('created_at', 'desc')->paginate($limit))->response()->getData(true), 'get mak data success');
     }
 
     public function create(Request $request)

@@ -25,4 +25,8 @@ class ViewMakDetail extends Model
     {
         return $this->hasMany(Monitoring::class, 'mak_id');
     }
+
+    public function budged_activity() {
+        return $this->belongsTo(BudgedActivity::class, 'budged_activity_id');
+    }
 }

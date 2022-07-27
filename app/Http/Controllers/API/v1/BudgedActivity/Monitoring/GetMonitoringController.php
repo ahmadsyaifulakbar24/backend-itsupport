@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1\BudgedActivity\Monitoring;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Monitoring\MonitoringDetailresource;
 use App\Http\Resources\Monitoring\MonitoringResouce;
 use App\Models\Monitoring;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class GetMonitoringController extends Controller
         $message = 'get monitoring data success';
         if($request->id) {
             $monitoring = Monitoring::find($request->id);
-            return ResponseFormatter::success(new MonitoringResouce($monitoring), $message);
+            return ResponseFormatter::success(new MonitoringDetailresource($monitoring), $message);
         }
 
         $monitoring = Monitoring::query();

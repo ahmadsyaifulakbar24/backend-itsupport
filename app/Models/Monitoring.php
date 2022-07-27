@@ -54,4 +54,9 @@ class Monitoring extends Model
     {
         return $this->belongsTo(Param::class, 'milestone_id');
     }
+
+    public function monitoring_assigment() 
+    {
+        return $this->hasMany(MonitoringAssigment::class, 'monitoring_id');
+    }
 }
