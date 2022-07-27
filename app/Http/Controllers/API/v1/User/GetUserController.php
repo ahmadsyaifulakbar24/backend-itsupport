@@ -47,11 +47,11 @@ class GetUserController extends Controller
         }
 
         if($request->paginate) {
-            $result = $user->paginate($limit);
+            $result =  UserDetailResouce::collection($user->paginate($limit))->response()->getData(true);
         } else {
-            $result = $user->get();
+            $result =  UserDetailResouce::collection($user->get());            
         }
-        return ResponseFormatter::success(UserDetailResouce::collection($result), $message);
+        return ResponseFormatter::success($result, $message);
     }
 
     public function assignment(Request $request)
