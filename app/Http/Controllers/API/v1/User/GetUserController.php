@@ -23,8 +23,8 @@ class GetUserController extends Controller
             $user = User::find($request->id);
             return ResponseFormatter::success(new UserDetailResouce($user), $message);
         }
-
-        $user = User::query();
+        
+        $user = User::where('id', $request->user()->id)->whereNotIn('role', ['super_admin', 'admin']);
         if($request->role) {
             $user->where('role', $request->role);
         }

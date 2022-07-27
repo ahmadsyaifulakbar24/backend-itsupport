@@ -69,4 +69,21 @@ class UpdateUserController extends Controller
 
         return ResponseFormatter::success(new UserResource($user), 'change password data success');
     }
+
+    public function change_password_without_confirm (Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'exists:users,id'],
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required', 'min:8'],
+        ]);
+
+        $user = User::find($request->id);
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return ResponseFormatter::success(new UserResource($user), 'change password data success');
+    }
 }
