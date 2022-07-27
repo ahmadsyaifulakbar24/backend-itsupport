@@ -46,7 +46,7 @@ class UpdateUserController extends Controller
             'position' => $request->position,
         ]);
 
-        return ResponseFormatter::success(new UserResource($user), 'update user data success');
+        return ResponseFormatter::success(new UserDetailResouce($user), 'update user data success');
     }
 
     public function update_profile(Request $request)
