@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API\v1\User;
 
+use App\Helpers\FileHelpers;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\UserDetailResouce;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,6 +47,22 @@ class UpdateUserController extends Controller
         ]);
 
         return ResponseFormatter::success(new UserResource($user), 'update user data success');
+    }
+
+    public function update_profile(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'exists:users,id'],
+            'photo' => ['required', 'image']
+        ]);
+
+        $user = User::find($request->id);
+        $photo = FileHelpers::upload_file('profile', $request->photo);
+        $user->update([
+            'photo' => $photo
+        ]);
+
+        return ResponseFormatter::success(new UserDetailResouce($user), 'update user profile success');
     }
 
     public function change_password (Request $request)

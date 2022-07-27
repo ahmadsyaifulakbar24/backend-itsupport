@@ -69,6 +69,7 @@ Route::prefix('v1')->group(function() {
             Route::get('/', [GetUserController::class, 'get']);
             Route::get('/assignment', [GetUserController::class, 'assignment']);
             Route::patch('/update', [UpdateUserController::class, 'update']);
+            Route::post('/update_profile', [UpdateUserController::class, 'update_profile']);
             Route::patch('/change_password', [UpdateUserController::class, 'change_password']);
             Route::patch('/change_password_without_confirm', [UpdateUserController::class, 'change_password_without_confirm']);
         });
