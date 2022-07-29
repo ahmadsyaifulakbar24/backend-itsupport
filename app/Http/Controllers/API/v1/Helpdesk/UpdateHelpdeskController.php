@@ -279,7 +279,7 @@ class UpdateHelpdeskController extends Controller
 
         $helpdesk = Helpdesk::find($request->id);
         $input['status'] = $request->status;
-        if($request->status != 'pending') {
+        if($request->status != 'pending' || $request->status != 'reject') {
             $input['approve_date'] = Carbon::now();
         }
         $helpdesk->update($input);
