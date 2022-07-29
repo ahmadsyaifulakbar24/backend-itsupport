@@ -20,6 +20,7 @@ class HelpdeskStepResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'order' => $this->order,
+            'finish_date' => $this->finish_date,
         ];
     }
 }

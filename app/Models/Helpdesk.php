@@ -50,7 +50,8 @@ class Helpdesk extends Model
         'location',
         'application_name',
         'description',
-        'status'
+        'status',
+        'approve_date',
     ];
 
     public function getCreatedAtAttribute($date) {
@@ -59,6 +60,10 @@ class Helpdesk extends Model
 
     public function getUpdatedAtAttribute($date) {
         return Carbon::parse($date)->format('Y-m-d H:i:s');
+    }
+
+    public function getApproveDateAttribute($date) {
+        return ($date) ? Carbon::parse($date)->format('Y-m-d H:i:s') : null;
     }
 
     public function file()

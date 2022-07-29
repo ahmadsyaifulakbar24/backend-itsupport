@@ -8,6 +8,7 @@ use App\Http\Resources\Helpdesk\HelpdeskStep\HelpdeskStepResource;
 use App\Models\HelpdeskStep;
 use App\Models\User;
 use App\Notifications\UpdateSLAStatus;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UpdateHelpdeskStepController extends Controller
@@ -43,9 +44,10 @@ class UpdateHelpdeskStepController extends Controller
             'status' => ['required', 'in:process,finish'],
         ]);
         $helpdesk_step = HelpdeskStep::find($request->id);
-        $helpdesk_step->update([
-            'status' => $request->status,
-        ]);
+
+        $input['status'] = $request->status;
+        $input['finish_date'] = ($request->status == 'finish') ? Carbon::now() : null;
+        $helpdesk_step->update($input);
 
         $historyInput = [
             'type' => 'helpdesk_step',

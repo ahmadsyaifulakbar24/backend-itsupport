@@ -34,6 +34,7 @@ class HelpdeskDetailResource extends JsonResource
             'helpdesk_step_general_user' => HelpdeskStepResource::collection($this->helpdesk_step()->orderBy('order', 'desc')->limit(1)->get()),
             'other_status' => [
                 'assigment_status' => ($this->helpdesk_assigment()->count() > 0) ? true : false,
+                'finish_date' => ($this->helpdesk_assigment()->count() > 0) ? $this->helpdesk_assigment()->latest('created_at')->first()->created_at : null,
             ],
             'title' => $this->title,
             'email_type' => new ParamResource($this->email_type),
@@ -71,6 +72,7 @@ class HelpdeskDetailResource extends JsonResource
             'location' => $this->location,
             'application_name' => $this->application_name,
             'status' => $this->status,
+            'approve_date' => $this->approve_date,
 
             // file 
             'approval_document' => FileResource::collection($this->fileQuery('approval_document')),

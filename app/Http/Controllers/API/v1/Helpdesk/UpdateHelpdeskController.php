@@ -8,6 +8,7 @@ use App\Http\Resources\Helpdesk\HelpdeskResource;
 use App\Models\Helpdesk;
 use App\Models\User;
 use App\Notifications\UpdateHelpdeskStatus;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -277,9 +278,11 @@ class UpdateHelpdeskController extends Controller
         ]);
 
         $helpdesk = Helpdesk::find($request->id);
-        $helpdesk->update([
-            'status' => $request->status
-        ]);
+        $input['status'] = $request->status;
+        if($request->status != 'pending') {
+            $input['approve_date'] = Carbon::now();
+        }
+        $helpdesk->update($input);
 
         // sent notification
         $updated_by = User::find($request->user()->id);

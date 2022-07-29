@@ -17,7 +17,8 @@ class HelpdeskStep extends Model
         'helpdesk_id',
         'service_category_step_id',
         'status',
-        'description'
+        'description',
+        'finish_date'
     ];
 
     public function getCreatedAtAttribute($date) {
@@ -26,6 +27,10 @@ class HelpdeskStep extends Model
 
     public function getUpdatedAtAttribute($date) {
         return Carbon::parse($date)->format('Y-m-d H:i:s');
+    }
+
+    public function getFinishDateAttribute($date) {
+        return ($date) ? Carbon::parse($date)->format('Y-m-d H:i:s') : null;
     }
     
     public function helpdesk()
